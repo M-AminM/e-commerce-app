@@ -1,13 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 import { useAuth } from "@/contexts/AuthContext";
+import { useCart } from "@/contexts/CartContext";
 import Image from "next/image";
 
 export default function Header() {
-  const [cartCount] = useState(0);
   const { user, loading, logout } = useAuth();
+  const { getTotalItems } = useCart();
+  const cartCount = getTotalItems();
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white">

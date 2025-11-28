@@ -4,36 +4,14 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { redirect } from "next/navigation";
 import Image from "next/image";
+import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
-
-interface CartItem {
-  id: number;
-  name: string;
-  price: number;
-  image: string;
-  quantity: number;
-}
-
-const cartItems: CartItem[] = [
-  {
-    id: 1,
-    name: "Wireless Headphones",
-    price: 99.99,
-    image: "/images/products/headphones.jpg",
-    quantity: 1,
-  },
-  {
-    id: 2,
-    name: "Smart Watch",
-    price: 249.99,
-    image: "/images/products/smartwatch.jpg",
-    quantity: 2,
-  },
-];
+import { useCart } from "@/contexts/CartContext";
 
 export default function CheckoutPage() {
   const router = useRouter();
   const { user, loading } = useAuth();
+  const { items: cartItems, getTotalPrice, clearCart } = useCart();
   const [isProcessing, setIsProcessing] = useState(false);
 
   useEffect(() => {
@@ -57,10 +35,26 @@ export default function CheckoutPage() {
     return null;
   }
 
-  const subtotal = cartItems.reduce(
-    (sum, item) => sum + item.price * item.quantity,
-    0
-  );
+  if (cartItems.length === 0) {
+    return (
+      <main className="min-h-screen bg-gray-50">
+        <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-gray-900">Your cart is empty</h2>
+            <p className="mt-2 text-gray-600">Add items to your cart before checking out</p>
+            <Link
+              href="/products"
+              className="mt-8 inline-block rounded-lg bg-blue-600 px-8 py-3 text-base font-semibold text-white hover:bg-blue-700 transition-colors"
+            >
+              Continue Shopping
+            </Link>
+          </div>
+        </div>
+      </main>
+    );
+  }
+
+  const subtotal = getTotalPrice();
   const shipping = subtotal > 100 ? 0 : 9.99;
   const tax = subtotal * 0.1;
   const total = subtotal + shipping + tax;
@@ -71,6 +65,7 @@ export default function CheckoutPage() {
 
     setTimeout(() => {
       setIsProcessing(false);
+      clearCart();
       alert("Order placed successfully!");
       router.push("/");
     }, 2000);
