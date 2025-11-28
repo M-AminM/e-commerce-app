@@ -1,11 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
 
-export default function SignInPage() {
+const SignIn = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackUrl") || "/";
@@ -41,7 +41,10 @@ export default function SignInPage() {
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
             Or{" "}
-            <Link href="/auth/signup" className="font-medium text-blue-600 hover:text-blue-500">
+            <Link
+              href="/auth/signup"
+              className="font-medium text-blue-600 hover:text-blue-500"
+            >
               create a new account
             </Link>
           </p>
@@ -56,7 +59,10 @@ export default function SignInPage() {
             )}
 
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="email"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Email address
               </label>
               <div className="mt-1">
@@ -75,7 +81,10 @@ export default function SignInPage() {
             </div>
 
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+              <label
+                htmlFor="password"
+                className="block text-sm font-medium text-gray-700"
+              >
                 Password
               </label>
               <div className="mt-1">
@@ -110,11 +119,16 @@ export default function SignInPage() {
 
           <div className="mt-6 text-center text-sm text-gray-600">
             <p className="mb-2">
-              Demo account: <span className="font-medium">demo@example.com</span> / <span className="font-medium">password123</span>
+              Demo account:{" "}
+              <span className="font-medium">demo@example.com</span> /{" "}
+              <span className="font-medium">password123</span>
             </p>
             <p>
               Or{" "}
-              <Link href="/auth/signup" className="font-medium text-blue-600 hover:text-blue-500">
+              <Link
+                href="/auth/signup"
+                className="font-medium text-blue-600 hover:text-blue-500"
+              >
                 sign up
               </Link>{" "}
               with any email
@@ -123,5 +137,13 @@ export default function SignInPage() {
         </div>
       </div>
     </main>
+  );
+};
+
+export default function SignInPage() {
+  return (
+    <Suspense fallback={<>Loading ...</>}>
+      <SignIn />
+    </Suspense>
   );
 }
