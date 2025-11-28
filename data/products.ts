@@ -167,3 +167,27 @@ export const getProductsByCategory = (category: string): Product[] => {
 export const getProductById = (id: number): Product | undefined => {
   return products.find((product) => product.id === id);
 };
+
+export const searchProducts = (query: string): Product[] => {
+  const searchTerm = query.toLowerCase().trim();
+
+  if (!searchTerm) {
+    return products;
+  }
+
+  // For short queries (1-2 characters), only search in name and category
+  // This prevents too many irrelevant results from description matches
+  const isShortQuery = searchTerm.length <= 2;
+
+  return products.filter((product) => {
+    const nameMatch = product.name.toLowerCase().includes(searchTerm);
+    const categoryMatch = product.category.toLowerCase().includes(searchTerm);
+
+    if (isShortQuery) {
+      return nameMatch || categoryMatch;
+    }
+
+    const descriptionMatch = product.description.toLowerCase().includes(searchTerm);
+    return nameMatch || categoryMatch || descriptionMatch;
+  });
+};

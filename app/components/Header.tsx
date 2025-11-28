@@ -4,17 +4,81 @@ import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
 import { useCart } from "@/contexts/CartContext";
 import Image from "next/image";
+import { useState, FormEvent, useEffect, useRef } from "react";
+import { useRouter } from "next/navigation";
+import { searchProducts, Product } from "@/data/products";
 
 export default function Header() {
   const { user, loading, logout } = useAuth();
   const { getTotalItems } = useCart();
   const cartCount = getTotalItems();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [suggestions, setSuggestions] = useState<Product[]>([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
+  const [debounceTimer, setDebounceTimer] = useState<NodeJS.Timeout | null>(null);
+  const router = useRouter();
+  const searchRef = useRef<HTMLDivElement>(null);
+
+  // Close suggestions when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+        setShowSuggestions(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  // Debounced search
+  useEffect(() => {
+    if (debounceTimer) {
+      clearTimeout(debounceTimer);
+    }
+
+    if (searchQuery.trim().length > 0) {
+      const timer = setTimeout(() => {
+        const results = searchProducts(searchQuery);
+        setSuggestions(results.slice(0, 5)); // Show max 5 suggestions
+        setShowSuggestions(true);
+      }, 300); // 300ms debounce
+
+      setDebounceTimer(timer);
+    } else {
+      setSuggestions([]);
+      setShowSuggestions(false);
+    }
+
+    return () => {
+      if (debounceTimer) {
+        clearTimeout(debounceTimer);
+      }
+    };
+  }, [searchQuery]);
+
+  const handleSearch = (e: FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      router.push(`/search?q=${encodeURIComponent(searchQuery.trim())}`);
+      setSearchQuery("");
+      setShowSuggestions(false);
+    }
+  };
+
+  const handleSuggestionClick = (productId: number) => {
+    setSearchQuery("");
+    setShowSuggestions(false);
+    router.push(`/products/${productId}`);
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-8">
-          <Link href="/" className="text-2xl font-bold text-gray-900">
+      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
+        <div className="flex items-center gap-4 lg:gap-8">
+          <Link href="/" className="text-2xl font-bold text-gray-900 shrink-0">
             <Image
               src={"/images/logo.png"}
               alt={"SafeShop"}
@@ -34,7 +98,94 @@ export default function Header() {
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
+        <form onSubmit={handleSearch} className="flex-1 max-w-md mx-4 hidden sm:block">
+          <div className="relative" ref={searchRef}>
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder="Search products..."
+              className="w-full rounded-lg border border-gray-300 pl-10 pr-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+            />
+            <svg
+              className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+              />
+            </svg>
+
+            {/* Suggestions Dropdown */}
+            {showSuggestions && suggestions.length > 0 && (
+              <div className="absolute top-full mt-2 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-96 overflow-y-auto z-50">
+                {suggestions.map((product) => (
+                  <button
+                    key={product.id}
+                    type="button"
+                    onClick={() => handleSuggestionClick(product.id)}
+                    className="w-full flex items-center gap-3 p-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0 text-left"
+                  >
+                    <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded bg-gray-100">
+                      <Image
+                        src={product.image}
+                        alt={product.name}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <h4 className="text-sm font-medium text-gray-900 truncate">
+                        {product.name}
+                      </h4>
+                      <p className="text-xs text-gray-500">{product.category}</p>
+                    </div>
+                    <div className="text-sm font-semibold text-gray-900">
+                      ${product.price.toFixed(2)}
+                    </div>
+                  </button>
+                ))}
+                {searchQuery.trim() && (
+                  <button
+                    type="submit"
+                    className="w-full p-3 text-sm text-blue-600 hover:bg-gray-50 font-medium flex items-center justify-center gap-2"
+                  >
+                    <svg
+                      className="h-4 w-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                      />
+                    </svg>
+                    View all results for &quot;{searchQuery}&quot;
+                  </button>
+                )}
+              </div>
+            )}
+
+            {/* No results message */}
+            {showSuggestions && searchQuery.trim() && suggestions.length === 0 && (
+              <div className="absolute top-full mt-2 w-full bg-white border border-gray-200 rounded-lg shadow-lg p-4 z-50">
+                <p className="text-sm text-gray-500 text-center">
+                  No products found for &quot;{searchQuery}&quot;
+                </p>
+              </div>
+            )}
+          </div>
+        </form>
+
+        <div className="flex items-center gap-2 sm:gap-4">
           <Link
             href="/cart"
             className="relative flex items-center gap-2 rounded-lg px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors"
