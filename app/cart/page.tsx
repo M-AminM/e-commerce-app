@@ -51,7 +51,9 @@ export default function CartPage() {
   return (
     <main className="min-h-screen bg-gray-50">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Shopping Cart</h1>
+        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">
+          Shopping Cart
+        </h1>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           {/* Cart Items */}
@@ -59,63 +61,37 @@ export default function CartPage() {
             {items.map((item) => (
               <div
                 key={item.id}
-                className="bg-white rounded-lg shadow-sm p-6 flex gap-6"
+                className="bg-white rounded-lg shadow-sm p-4 sm:p-6"
               >
-                <div className="relative h-32 w-32 shrink-0 overflow-hidden rounded-lg bg-gray-100">
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-
-                <div className="flex flex-1 flex-col">
-                  <div className="flex justify-between">
-                    <div>
-                      <h3 className="text-lg font-semibold text-gray-900">
-                        {item.name}
-                      </h3>
-                      <p className="mt-1 text-xl font-bold text-gray-900">
-                        \${item.price.toFixed(2)}
-                      </p>
-                    </div>
-                    <button
-                      onClick={() => removeFromCart(item.id)}
-                      className="text-gray-400 hover:text-red-600 transition-colors"
-                    >
-                      <svg
-                        className="h-5 w-5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M6 18L18 6M6 6l12 12"
-                        />
-                      </svg>
-                    </button>
+                <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+                  {/* Product Image */}
+                  <div className="relative h-60 sm:h-32 w-full sm:w-32 shrink-0 overflow-hidden rounded-lg bg-gray-100">
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      fill
+                      className="object-cover"
+                    />
                   </div>
 
-                  <div className="mt-4 flex items-center gap-4">
-                    <label
-                      htmlFor={`quantity-\${item.id}`}
-                      className="text-sm font-medium text-gray-700"
-                    >
-                      Quantity:
-                    </label>
-                    <div className="flex items-center gap-2">
+                  {/* Product Details */}
+                  <div className="flex flex-1 flex-col">
+                    <div className="flex justify-between gap-4">
+                      <div className="flex-1">
+                        <h3 className="text-base sm:text-lg font-semibold text-gray-900 line-clamp-2">
+                          {item.name}
+                        </h3>
+                        <p className="mt-1 text-lg sm:text-xl font-bold text-gray-900">
+                          ${item.price.toFixed(2)}
+                        </p>
+                      </div>
                       <button
-                        onClick={() =>
-                          updateQuantity(item.id, item.quantity - 1)
-                        }
-                        className="rounded-lg border border-gray-300 p-2 hover:bg-gray-100 transition-colors"
+                        onClick={() => removeFromCart(item.id)}
+                        className="text-gray-400 hover:text-red-600 transition-colors h-fit"
+                        aria-label="Remove item"
                       >
                         <svg
-                          className="h-4 w-4"
+                          className="h-5 w-5"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -124,44 +100,83 @@ export default function CartPage() {
                             strokeLinecap="round"
                             strokeLinejoin="round"
                             strokeWidth={2}
-                            d="M20 12H4"
-                          />
-                        </svg>
-                      </button>
-                      <input
-                        type="number"
-                        id={`quantity-\${item.id}`}
-                        min="1"
-                        value={item.quantity}
-                        onChange={(e) =>
-                          updateQuantity(item.id, parseInt(e.target.value))
-                        }
-                        className="w-16 rounded-lg border border-gray-300 px-3 py-2 text-center focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                      />
-                      <button
-                        onClick={() =>
-                          updateQuantity(item.id, item.quantity + 1)
-                        }
-                        className="rounded-lg border border-gray-300 p-2 hover:bg-gray-100 transition-colors"
-                      >
-                        <svg
-                          className="h-4 w-4"
-                          fill="none"
-                          stroke="currentColor"
-                          viewBox="0 0 24 24"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M12 4v16m8-8H4"
+                            d="M6 18L18 6M6 6l12 12"
                           />
                         </svg>
                       </button>
                     </div>
-                    <p className="ml-auto text-lg font-semibold text-gray-900">
-                      \${(item.price * item.quantity).toFixed(2)}
-                    </p>
+
+                    {/* Quantity Controls */}
+                    <div className="mt-4 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
+                      <div className="flex items-center gap-3">
+                        <label
+                          htmlFor={`quantity-${item.id}`}
+                          className="text-sm font-medium text-gray-700 whitespace-nowrap"
+                        >
+                          Quantity:
+                        </label>
+                        <div className="flex items-center gap-2">
+                          <button
+                            onClick={() =>
+                              updateQuantity(item.id, item.quantity - 1)
+                            }
+                            className="rounded-lg border border-gray-300 p-2 hover:bg-gray-100 transition-colors"
+                            aria-label="Decrease quantity"
+                          >
+                            <svg
+                              className="h-4 w-4"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M20 12H4"
+                              />
+                            </svg>
+                          </button>
+                          <input
+                            type="number"
+                            id={`quantity-${item.id}`}
+                            min="1"
+                            value={item.quantity}
+                            onChange={(e) =>
+                              updateQuantity(
+                                item.id,
+                                parseInt(e.target.value) || 1
+                              )
+                            }
+                            className="w-16 rounded-lg border border-gray-300 px-3 py-2 text-center focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                          />
+                          <button
+                            onClick={() =>
+                              updateQuantity(item.id, item.quantity + 1)
+                            }
+                            className="rounded-lg border border-gray-300 p-2 hover:bg-gray-100 transition-colors"
+                            aria-label="Increase quantity"
+                          >
+                            <svg
+                              className="h-4 w-4"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M12 4v16m8-8H4"
+                              />
+                            </svg>
+                          </button>
+                        </div>
+                      </div>
+                      <p className="text-base sm:text-lg font-semibold text-gray-900 sm:ml-auto">
+                        Subtotal: ${(item.price * item.quantity).toFixed(2)}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -170,7 +185,7 @@ export default function CartPage() {
 
           {/* Order Summary */}
           <div className="lg:col-span-1">
-            <div className="bg-white rounded-lg shadow-sm p-6 sticky top-24">
+            <div className="bg-white rounded-lg shadow-sm p-6 lg:sticky lg:top-24">
               <h2 className="text-lg font-semibold text-gray-900 mb-4">
                 Order Summary
               </h2>
@@ -178,12 +193,12 @@ export default function CartPage() {
               <div className="space-y-3 border-b border-gray-200 pb-4">
                 <div className="flex justify-between text-gray-600">
                   <span>Subtotal</span>
-                  <span>{subtotal.toFixed(2)}</span>
+                  <span>${subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-gray-600">
                   <span>Shipping</span>
                   <span>
-                    {shipping === 0 ? "Free" : `\$\${shipping.toFixed(2)}`}
+                    {shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}
                   </span>
                 </div>
                 <div className="flex justify-between text-gray-600">
@@ -194,12 +209,12 @@ export default function CartPage() {
 
               <div className="mt-4 flex justify-between text-lg font-bold text-gray-900">
                 <span>Total</span>
-                <span>\${total.toFixed(2)}</span>
+                <span>${total.toFixed(2)}</span>
               </div>
 
               {subtotal < 100 && (
                 <p className="mt-4 text-sm text-gray-600">
-                  Add \${(100 - subtotal).toFixed(2)} more for free shipping!
+                  Add ${(100 - subtotal).toFixed(2)} more for free shipping!
                 </p>
               )}
 
