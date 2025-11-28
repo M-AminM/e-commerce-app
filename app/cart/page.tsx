@@ -13,22 +13,7 @@ interface CartItem {
   quantity: number;
 }
 
-const initialCartItems: CartItem[] = [
-  {
-    id: 1,
-    name: "Wireless Headphones",
-    price: 99.99,
-    image: "/images/products/headphones.jpg",
-    quantity: 1,
-  },
-  {
-    id: 2,
-    name: "Smart Watch",
-    price: 249.99,
-    image: "/images/products/smartwatch.jpg",
-    quantity: 2,
-  },
-];
+const initialCartItems: CartItem[] = [];
 
 export default function CartPage() {
   const router = useRouter();
