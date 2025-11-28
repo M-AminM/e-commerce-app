@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ShopHub - Your Online Store",
+  title: "SafeShop - Your Online Store",
   description: "Shop the best products at the best prices",
 };
 
