@@ -76,29 +76,98 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-        <div className="flex items-center gap-4 lg:gap-8">
-          <Link href="/" className="text-2xl font-bold text-gray-900 shrink-0">
-            <Image
-              src={"/images/logo.png"}
-              alt={"SafeShop"}
-              width={60}
-              height={60}
-              className="object-cover rounded"
-            />
-          </Link>
+      <nav className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+        {/* Top row: Logo, Products link, Cart, and Auth */}
+        <div className="flex items-center justify-between gap-4 mb-3 sm:mb-0">
+          <div className="flex items-center gap-4 lg:gap-8">
+            <Link href="/" className="text-2xl font-bold text-gray-900 shrink-0">
+              <Image
+                src={"/images/logo.png"}
+                alt={"SafeShop"}
+                width={60}
+                height={60}
+                className="object-cover rounded"
+              />
+            </Link>
 
-          <div className="hidden md:flex gap-6">
             <Link
               href="/products"
-              className="text-gray-700 hover:text-gray-900 transition-colors"
+              className="text-gray-700 hover:text-gray-900 transition-colors text-sm sm:text-base"
             >
               Products
             </Link>
           </div>
+
+          <div className="flex items-center gap-2 sm:gap-4">
+            <Link
+              href="/cart"
+              className="relative flex items-center gap-2 rounded-lg px-2 sm:px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors"
+            >
+              <svg
+                className="h-6 w-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
+                />
+              </svg>
+              {cartCount > 0 && (
+                <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white">
+                  {cartCount}
+                </span>
+              )}
+            </Link>
+
+            {loading ? (
+              <div className="h-8 w-8 animate-pulse bg-gray-200 rounded-full"></div>
+            ) : user ? (
+              <div className="flex items-center gap-2">
+                <Link
+                  href="/profile"
+                  className="flex items-center gap-2 rounded-lg px-2 sm:px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors"
+                >
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
+                  </svg>
+                  <span className="hidden sm:inline text-sm font-medium">
+                    {user.name.split(" ")[0]}
+                  </span>
+                </Link>
+                <button
+                  onClick={logout}
+                  className="hidden sm:block rounded-lg px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors"
+                >
+                  Sign Out
+                </button>
+              </div>
+            ) : (
+              <Link
+                href="/auth/signin"
+                className="rounded-lg bg-blue-600 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-white hover:bg-blue-700 transition-colors"
+              >
+                Sign In
+              </Link>
+            )}
+          </div>
         </div>
 
-        <form onSubmit={handleSearch} className="flex-1 max-w-md mx-4 hidden sm:block">
+        {/* Bottom row: Search bar (full width on mobile) */}
+        <form onSubmit={handleSearch} className="w-full sm:max-w-md sm:mx-auto">
           <div className="relative" ref={searchRef}>
             <input
               type="text"
@@ -184,73 +253,6 @@ export default function Header() {
             )}
           </div>
         </form>
-
-        <div className="flex items-center gap-2 sm:gap-4">
-          <Link
-            href="/cart"
-            className="relative flex items-center gap-2 rounded-lg px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors"
-          >
-            <svg
-              className="h-6 w-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
-              />
-            </svg>
-            {cartCount > 0 && (
-              <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white">
-                {cartCount}
-              </span>
-            )}
-          </Link>
-
-          {loading ? (
-            <div className="h-8 w-8 animate-pulse bg-gray-200 rounded-full"></div>
-          ) : user ? (
-            <div className="flex items-center gap-2">
-              <Link
-                href="/profile"
-                className="flex items-center gap-2 rounded-lg px-4 py-2 text-gray-700 hover:bg-gray-100 transition-colors"
-              >
-                <svg
-                  className="h-6 w-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                  />
-                </svg>
-                <span className="hidden md:inline text-sm font-medium">
-                  {user.name.split(" ")[0]}
-                </span>
-              </Link>
-              <button
-                onClick={logout}
-                className="rounded-lg px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors"
-              >
-                Sign Out
-              </button>
-            </div>
-          ) : (
-            <Link
-              href="/auth/signin"
-              className="rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 transition-colors"
-            >
-              Sign In
-            </Link>
-          )}
-        </div>
       </nav>
     </header>
   );
