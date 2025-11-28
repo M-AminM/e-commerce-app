@@ -18,14 +18,14 @@ const initialCartItems: CartItem[] = [
     id: 1,
     name: "Wireless Headphones",
     price: 99.99,
-    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop",
+    image: "/images/products/headphones.jpg",
     quantity: 1,
   },
   {
     id: 2,
     name: "Smart Watch",
     price: 249.99,
-    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=300&fit=crop",
+    image: "/images/products/smartwatch.jpg",
     quantity: 2,
   },
 ];
@@ -36,18 +36,21 @@ export default function CartPage() {
 
   const updateQuantity = (id: number, newQuantity: number) => {
     if (newQuantity < 1) return;
-    setCartItems(items =>
-      items.map(item =>
+    setCartItems((items) =>
+      items.map((item) =>
         item.id === id ? { ...item, quantity: newQuantity } : item
       )
     );
   };
 
   const removeItem = (id: number) => {
-    setCartItems(items => items.filter(item => item.id !== id));
+    setCartItems((items) => items.filter((item) => item.id !== id));
   };
 
-  const subtotal = cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
+  const subtotal = cartItems.reduce(
+    (sum, item) => sum + item.price * item.quantity,
+    0
+  );
   const shipping = subtotal > 100 ? 0 : 9.99;
   const tax = subtotal * 0.1;
   const total = subtotal + shipping + tax;
@@ -72,8 +75,12 @@ export default function CartPage() {
                 d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
               />
             </svg>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-2">Your cart is empty</h2>
-            <p className="text-gray-600 mb-6">Add some products to get started</p>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-2">
+              Your cart is empty
+            </h2>
+            <p className="text-gray-600 mb-6">
+              Add some products to get started
+            </p>
             <Link
               href="/products"
               className="inline-block rounded-lg bg-blue-600 px-6 py-3 text-white font-semibold hover:bg-blue-700 transition-colors"
@@ -108,13 +115,20 @@ export default function CartPage() {
                           >
                             {item.name}
                           </Link>
-                          <p className="mt-1 text-gray-600">${item.price.toFixed(2)}</p>
+                          <p className="mt-1 text-gray-600">
+                            ${item.price.toFixed(2)}
+                          </p>
                         </div>
                         <button
                           onClick={() => removeItem(item.id)}
                           className="text-gray-400 hover:text-red-600 transition-colors"
                         >
-                          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <svg
+                            className="h-5 w-5"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
                             <path
                               strokeLinecap="round"
                               strokeLinejoin="round"
@@ -127,20 +141,46 @@ export default function CartPage() {
 
                       <div className="mt-4 flex items-center gap-3">
                         <button
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                          onClick={() =>
+                            updateQuantity(item.id, item.quantity - 1)
+                          }
                           className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-300 bg-white hover:bg-gray-50"
                         >
-                          <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 12H4" />
+                          <svg
+                            className="h-3 w-3"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M20 12H4"
+                            />
                           </svg>
                         </button>
-                        <span className="w-12 text-center font-semibold">{item.quantity}</span>
+                        <span className="w-12 text-center font-semibold">
+                          {item.quantity}
+                        </span>
                         <button
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                          onClick={() =>
+                            updateQuantity(item.id, item.quantity + 1)
+                          }
                           className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-300 bg-white hover:bg-gray-50"
                         >
-                          <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4v16m8-8H4" />
+                          <svg
+                            className="h-3 w-3"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M12 4v16m8-8H4"
+                            />
                           </svg>
                         </button>
                         <span className="ml-auto text-lg font-bold text-gray-900">
@@ -156,8 +196,18 @@ export default function CartPage() {
                 href="/products"
                 className="mt-6 inline-flex items-center text-blue-600 hover:text-blue-700 font-semibold"
               >
-                <svg className="h-5 w-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                <svg
+                  className="h-5 w-5 mr-2"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 19l-7-7m0 0l7-7m-7 7h18"
+                  />
                 </svg>
                 Continue Shopping
               </Link>
@@ -165,7 +215,9 @@ export default function CartPage() {
 
             <div className="lg:col-span-1">
               <div className="bg-white rounded-lg shadow-sm p-6 sticky top-24">
-                <h2 className="text-lg font-semibold text-gray-900 mb-4">Order Summary</h2>
+                <h2 className="text-lg font-semibold text-gray-900 mb-4">
+                  Order Summary
+                </h2>
 
                 <div className="space-y-3 mb-4">
                   <div className="flex justify-between text-gray-600">
@@ -174,7 +226,9 @@ export default function CartPage() {
                   </div>
                   <div className="flex justify-between text-gray-600">
                     <span>Shipping</span>
-                    <span>{shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}</span>
+                    <span>
+                      {shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}
+                    </span>
                   </div>
                   <div className="flex justify-between text-gray-600">
                     <span>Tax</span>
@@ -190,7 +244,8 @@ export default function CartPage() {
 
                 {subtotal < 100 && (
                   <div className="mb-4 rounded-lg bg-blue-50 p-3 text-sm text-blue-700">
-                    Add ${(100 - subtotal).toFixed(2)} more to get free shipping!
+                    Add ${(100 - subtotal).toFixed(2)} more to get free
+                    shipping!
                   </div>
                 )}
 
@@ -203,20 +258,50 @@ export default function CartPage() {
 
                 <div className="mt-6 space-y-3 text-sm text-gray-600">
                   <div className="flex items-center">
-                    <svg className="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <svg
+                      className="h-5 w-5 text-green-500 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
                     </svg>
                     Secure checkout
                   </div>
                   <div className="flex items-center">
-                    <svg className="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <svg
+                      className="h-5 w-5 text-green-500 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
                     </svg>
                     30-day returns
                   </div>
                   <div className="flex items-center">
-                    <svg className="h-5 w-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    <svg
+                      className="h-5 w-5 text-green-500 mr-2"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 13l4 4L19 7"
+                      />
                     </svg>
                     Customer support
                   </div>

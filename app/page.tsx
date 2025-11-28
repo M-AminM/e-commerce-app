@@ -1,36 +1,8 @@
 import Link from "next/link";
 import ProductCard from "./components/ProductCard";
+import { getFeaturedProducts } from "@/data/products";
 
-const featuredProducts = [
-  {
-    id: 1,
-    name: "Wireless Headphones",
-    price: 99.99,
-    image: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500&h=500&fit=crop",
-    category: "Electronics",
-  },
-  {
-    id: 2,
-    name: "Smart Watch",
-    price: 249.99,
-    image: "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500&h=500&fit=crop",
-    category: "Electronics",
-  },
-  {
-    id: 3,
-    name: "Laptop Backpack",
-    price: 79.99,
-    image: "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=500&h=500&fit=crop",
-    category: "Accessories",
-  },
-  {
-    id: 4,
-    name: "Coffee Maker",
-    price: 129.99,
-    image: "https://images.unsplash.com/photo-1517668808822-9ebb02f2a0e6?w=500&h=500&fit=crop",
-    category: "Home",
-  },
-];
+const featuredProducts = getFeaturedProducts(8);
 
 export default function Home() {
   return (
@@ -75,7 +47,14 @@ export default function Home() {
 
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {featuredProducts.map((product) => (
-            <ProductCard key={product.id} {...product} />
+            <ProductCard
+              key={product.id}
+              id={product.id}
+              name={product.name}
+              price={product.price}
+              image={product.image}
+              category={product.category}
+            />
           ))}
         </div>
       </section>

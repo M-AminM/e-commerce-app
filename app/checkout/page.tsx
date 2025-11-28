@@ -19,16 +19,14 @@ const cartItems: CartItem[] = [
     id: 1,
     name: "Wireless Headphones",
     price: 99.99,
-    image:
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=300&h=300&fit=crop",
+    image: "/images/products/headphones.jpg",
     quantity: 1,
   },
   {
     id: 2,
     name: "Smart Watch",
     price: 249.99,
-    image:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=300&h=300&fit=crop",
+    image: "/images/products/smartwatch.jpg",
     quantity: 2,
   },
 ];
