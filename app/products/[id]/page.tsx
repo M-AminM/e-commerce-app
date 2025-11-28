@@ -197,7 +197,7 @@ export default function ProductDetailPage() {
                 {product.features.map((feature, index) => (
                   <li key={index} className="flex items-start">
                     <svg
-                      className="h-6 w-6 text-green-500 mr-2 flex-shrink-0"
+                      className="h-6 w-6 text-green-500 mr-2 shrink-0"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
