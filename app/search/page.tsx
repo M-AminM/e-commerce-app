@@ -1,11 +1,11 @@
 "use client";
 
 import { useSearchParams } from "next/navigation";
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import ProductCard from "@/app/components/ProductCard";
 import { searchProducts, categories, Product } from "@/data/products";
 
-export default function SearchPage() {
+const Search = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
   const [results, setResults] = useState<Product[]>([]);
@@ -43,7 +43,6 @@ export default function SearchPage() {
 
     setResults(filteredResults);
   }, [query, selectedCategory, sortBy]);
-
   return (
     <main className="min-h-screen bg-gray-50">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
@@ -140,5 +139,13 @@ export default function SearchPage() {
         )}
       </div>
     </main>
+  );
+};
+
+export default function SearchPage() {
+  return (
+    <Suspense fallback={<>Loading ...</>}>
+      <Search />
+    </Suspense>
   );
 }
