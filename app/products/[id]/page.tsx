@@ -185,7 +185,7 @@ export default function ProductDetailPage() {
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="rounded-lg border border-gray-300 p-2 hover:bg-gray-100 transition-colors"
+                    className="rounded-lg border border-gray-300 p-2 hover:bg-gray-100 transition-colors text-gray-800"
                   >
                     <svg
                       className="h-4 w-4"
@@ -209,11 +209,11 @@ export default function ProductDetailPage() {
                     onChange={(e) =>
                       setQuantity(Math.max(1, parseInt(e.target.value) || 1))
                     }
-                    className="w-20 rounded-lg border border-gray-300 px-3 py-2 text-center focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    className="text-gray-800 w-20 rounded-lg border border-gray-300 px-3 py-2 text-center focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                   />
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="rounded-lg border border-gray-300 p-2 hover:bg-gray-100 transition-colors"
+                    className="rounded-lg border border-gray-300 p-2 hover:bg-gray-100 transition-colors text-gray-800"
                   >
                     <svg
                       className="h-4 w-4"

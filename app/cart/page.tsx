@@ -120,7 +120,7 @@ export default function CartPage() {
                             onClick={() =>
                               updateQuantity(item.id, item.quantity - 1)
                             }
-                            className="rounded-lg border border-gray-300 p-2 hover:bg-gray-100 transition-colors"
+                            className="rounded-lg border border-gray-300 p-2 hover:bg-gray-100 transition-colors text-gray-800"
                             aria-label="Decrease quantity"
                           >
                             <svg
@@ -148,13 +148,13 @@ export default function CartPage() {
                                 parseInt(e.target.value) || 1
                               )
                             }
-                            className="w-16 rounded-lg border border-gray-300 px-3 py-2 text-center focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                            className="text-gray-800 w-16 rounded-lg border border-gray-300 px-3 py-2 text-center focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                           />
                           <button
                             onClick={() =>
                               updateQuantity(item.id, item.quantity + 1)
                             }
-                            className="rounded-lg border border-gray-300 p-2 hover:bg-gray-100 transition-colors"
+                            className="rounded-lg border border-gray-300 p-2 hover:bg-gray-100 transition-colors text-gray-800"
                             aria-label="Increase quantity"
                           >
                             <svg

@@ -40,8 +40,12 @@ export default function CheckoutPage() {
       <main className="min-h-screen bg-gray-50">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900">Your cart is empty</h2>
-            <p className="mt-2 text-gray-600">Add items to your cart before checking out</p>
+            <h2 className="text-3xl font-bold text-gray-900">
+              Your cart is empty
+            </h2>
+            <p className="mt-2 text-gray-600">
+              Add items to your cart before checking out
+            </p>
             <Link
               href="/products"
               className="mt-8 inline-block rounded-lg bg-blue-600 px-8 py-3 text-base font-semibold text-white hover:bg-blue-700 transition-colors"
@@ -96,7 +100,7 @@ export default function CheckoutPage() {
                       id="email"
                       required
                       defaultValue={user.email}
-                      className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                      className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       placeholder="you@example.com"
                     />
                   </div>
@@ -111,7 +115,7 @@ export default function CheckoutPage() {
                       type="tel"
                       id="phone"
                       required
-                      className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                      className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       placeholder="+1 (555) 123-4567"
                     />
                   </div>
@@ -135,7 +139,7 @@ export default function CheckoutPage() {
                         type="text"
                         id="firstName"
                         required
-                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
                     </div>
                     <div>
@@ -149,7 +153,7 @@ export default function CheckoutPage() {
                         type="text"
                         id="lastName"
                         required
-                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
                     </div>
                   </div>
@@ -165,7 +169,7 @@ export default function CheckoutPage() {
                       type="text"
                       id="address"
                       required
-                      className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                      className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       placeholder="123 Main St"
                     />
                   </div>
@@ -182,7 +186,7 @@ export default function CheckoutPage() {
                         type="text"
                         id="city"
                         required
-                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
                     </div>
                     <div>
@@ -196,7 +200,7 @@ export default function CheckoutPage() {
                         type="text"
                         id="state"
                         required
-                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
                     </div>
                     <div>
@@ -210,7 +214,7 @@ export default function CheckoutPage() {
                         type="text"
                         id="zip"
                         required
-                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
                     </div>
                   </div>
@@ -233,7 +237,7 @@ export default function CheckoutPage() {
                       type="text"
                       id="cardNumber"
                       required
-                      className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                      className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       placeholder="1234 5678 9012 3456"
                     />
                   </div>
@@ -250,7 +254,7 @@ export default function CheckoutPage() {
                         type="text"
                         id="expiry"
                         required
-                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                         placeholder="MM/YY"
                       />
                     </div>
@@ -265,7 +269,7 @@ export default function CheckoutPage() {
                         type="text"
                         id="cvv"
                         required
-                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                         placeholder="123"
                       />
                     </div>
