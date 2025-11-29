@@ -8,9 +8,10 @@ export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [sortBy, setSortBy] = useState("featured");
 
-  const filteredProducts = selectedCategory === "All"
-    ? products
-    : products.filter((product) => product.category === selectedCategory);
+  const filteredProducts =
+    selectedCategory === "All"
+      ? products
+      : products.filter((product) => product.category === selectedCategory);
 
   const sortedProducts = [...filteredProducts].sort((a, b) => {
     switch (sortBy) {
@@ -40,7 +41,6 @@ export default function ProductsPage() {
 
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          {/* Category Filter */}
           <div className="flex flex-wrap gap-2">
             {categories.map((category) => (
               <button
@@ -57,7 +57,6 @@ export default function ProductsPage() {
             ))}
           </div>
 
-          {/* Sort Options */}
           <div className="flex items-center gap-2">
             <label htmlFor="sort" className="text-sm font-medium text-gray-700">
               Sort by:
@@ -77,12 +76,11 @@ export default function ProductsPage() {
           </div>
         </div>
 
-        {/* Products Count */}
         <div className="mb-4 text-sm text-gray-600">
-          Showing {sortedProducts.length} {sortedProducts.length === 1 ? "product" : "products"}
+          Showing {sortedProducts.length}{" "}
+          {sortedProducts.length === 1 ? "product" : "products"}
         </div>
 
-        {/* Products Grid */}
         {sortedProducts.length > 0 ? (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {sortedProducts.map((product) => (
@@ -111,7 +109,9 @@ export default function ProductsPage() {
                 d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
               />
             </svg>
-            <p className="text-lg font-medium text-gray-900">No products found</p>
+            <p className="text-lg font-medium text-gray-900">
+              No products found
+            </p>
             <p className="mt-1 text-sm text-gray-600">
               Try selecting a different category
             </p>

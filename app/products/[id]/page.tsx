@@ -58,7 +58,6 @@ export default function ProductDetailPage() {
   return (
     <main className="min-h-screen bg-gray-50">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        {/* Breadcrumb */}
         <nav className="mb-8 flex items-center gap-2 text-sm text-gray-600">
           <Link href="/" className="hover:text-gray-900">
             Home
@@ -72,7 +71,6 @@ export default function ProductDetailPage() {
         </nav>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-          {/* Product Image */}
           <div className="relative aspect-square overflow-hidden rounded-lg bg-gray-100">
             <Image
               src={product.image}
@@ -83,7 +81,6 @@ export default function ProductDetailPage() {
             />
           </div>
 
-          {/* Product Info */}
           <div className="flex flex-col">
             {product.category && (
               <p className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">
@@ -101,7 +98,6 @@ export default function ProductDetailPage() {
               </p>
             </div>
 
-            {/* Rating */}
             <div className="mb-6 flex items-center gap-4">
               <div className="flex items-center gap-1">
                 {[...Array(5)].map((_, i) => (
@@ -124,7 +120,6 @@ export default function ProductDetailPage() {
               </p>
             </div>
 
-            {/* Description */}
             <div className="mb-8">
               <h2 className="text-lg font-semibold text-gray-900 mb-2">
                 Description
@@ -134,7 +129,6 @@ export default function ProductDetailPage() {
               </p>
             </div>
 
-            {/* Stock Status */}
             <div className="mb-6">
               {product.inStock ? (
                 <p className="flex items-center gap-2 text-green-600">
@@ -173,7 +167,6 @@ export default function ProductDetailPage() {
               )}
             </div>
 
-            {/* Quantity and Add to Cart */}
             <div className="mb-8 space-y-4">
               <div className="flex items-center gap-4">
                 <label
@@ -283,7 +276,6 @@ export default function ProductDetailPage() {
               </button>
             </div>
 
-            {/* Additional Info */}
             <div className="border-t border-gray-200 pt-6 space-y-4">
               <div className="flex items-center gap-3 text-gray-600">
                 <svg
