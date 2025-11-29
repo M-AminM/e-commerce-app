@@ -107,7 +107,7 @@ export default function ProductDetailPage() {
                 {[...Array(5)].map((_, i) => (
                   <svg
                     key={i}
-                    className={`h-5 w-5 \${
+                    className={`h-5 w-5 ${
                       i < Math.floor(product.rating)
                         ? "text-yellow-400"
                         : "text-gray-300"
