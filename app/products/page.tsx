@@ -5,11 +5,11 @@ import ProductCard from "../components/ProductCard";
 import { products, categories } from "@/data/products";
 
 export default function ProductsPage() {
-  const [selectedCategory, setSelectedCategory] = useState("All");
+  const [selectedCategory, setSelectedCategory] = useState("همه");
   const [sortBy, setSortBy] = useState("featured");
 
   const filteredProducts =
-    selectedCategory === "All"
+    selectedCategory === "همه"
       ? products
       : products.filter((product) => product.category === selectedCategory);
 
