@@ -58,7 +58,6 @@ export default function ProductDetailPage() {
   return (
     <main className="min-h-screen bg-gray-50">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        {/* Breadcrumb */}
         <nav className="mb-8 flex items-center gap-2 text-sm text-gray-600">
           <Link href="/" className="hover:text-gray-900">
             خانه
@@ -72,7 +71,6 @@ export default function ProductDetailPage() {
         </nav>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-          {/* Product Image */}
           <div className="relative aspect-square overflow-hidden rounded-lg bg-gray-100">
             <Image
               src={product.image}
@@ -83,7 +81,6 @@ export default function ProductDetailPage() {
             />
           </div>
 
-          {/* Product Info */}
           <div className="flex flex-col">
             {product.category && (
               <p className="text-sm font-medium text-gray-500 uppercase tracking-wide mb-2">
@@ -101,13 +98,12 @@ export default function ProductDetailPage() {
               </p>
             </div>
 
-            {/* Rating */}
             <div className="mb-6 flex items-center gap-4">
               <div className="flex items-center gap-1">
                 {[...Array(5)].map((_, i) => (
                   <svg
                     key={i}
-                    className={`h-5 w-5 \${
+                    className={`h-5 w-5 ${
                       i < Math.floor(product.rating)
                         ? "text-yellow-400"
                         : "text-gray-300"
@@ -124,7 +120,6 @@ export default function ProductDetailPage() {
               </p>
             </div>
 
-            {/* Description */}
             <div className="mb-8">
               <h2 className="text-lg font-semibold text-gray-900 mb-2">
                 توضیحات
@@ -134,7 +129,6 @@ export default function ProductDetailPage() {
               </p>
             </div>
 
-            {/* Stock Status */}
             <div className="mb-6">
               {product.inStock ? (
                 <p className="flex items-center gap-2 text-green-600">
@@ -173,7 +167,6 @@ export default function ProductDetailPage() {
               )}
             </div>
 
-            {/* Quantity and Add to Cart */}
             <div className="mb-8 space-y-4">
               <div className="flex items-center gap-4">
                 <label
@@ -185,7 +178,7 @@ export default function ProductDetailPage() {
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="rounded-lg border border-gray-300 p-2 hover:bg-gray-100 transition-colors"
+                    className="rounded-lg border border-gray-300 p-2 hover:bg-gray-100 transition-colors text-gray-800"
                   >
                     <svg
                       className="h-4 w-4"
@@ -209,11 +202,11 @@ export default function ProductDetailPage() {
                     onChange={(e) =>
                       setQuantity(Math.max(1, parseInt(e.target.value) || 1))
                     }
-                    className="w-20 rounded-lg border border-gray-300 px-3 py-2 text-center focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                    className="text-gray-800 w-20 rounded-lg border border-gray-300 px-3 py-2 text-center focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                   />
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="rounded-lg border border-gray-300 p-2 hover:bg-gray-100 transition-colors"
+                    className="rounded-lg border border-gray-300 p-2 hover:bg-gray-100 transition-colors text-gray-800"
                   >
                     <svg
                       className="h-4 w-4"
@@ -283,7 +276,6 @@ export default function ProductDetailPage() {
               </button>
             </div>
 
-            {/* Additional Info */}
             <div className="border-t border-gray-200 pt-6 space-y-4">
               <div className="flex items-center gap-3 text-gray-600">
                 <svg

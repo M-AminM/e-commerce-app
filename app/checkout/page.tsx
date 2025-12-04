@@ -96,7 +96,7 @@ export default function CheckoutPage() {
                       id="email"
                       required
                       defaultValue={user.email}
-                      className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                      className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       placeholder="you@example.com"
                     />
                   </div>
@@ -111,7 +111,7 @@ export default function CheckoutPage() {
                       type="tel"
                       id="phone"
                       required
-                      className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                      className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       placeholder="+1 (555) 123-4567"
                     />
                   </div>
@@ -135,7 +135,7 @@ export default function CheckoutPage() {
                         type="text"
                         id="firstName"
                         required
-                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
                     </div>
                     <div>
@@ -149,7 +149,7 @@ export default function CheckoutPage() {
                         type="text"
                         id="lastName"
                         required
-                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
                     </div>
                   </div>
@@ -165,7 +165,7 @@ export default function CheckoutPage() {
                       type="text"
                       id="address"
                       required
-                      className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                      className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       placeholder="123 Main St"
                     />
                   </div>
@@ -182,7 +182,7 @@ export default function CheckoutPage() {
                         type="text"
                         id="city"
                         required
-                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
                     </div>
                     <div>
@@ -196,7 +196,7 @@ export default function CheckoutPage() {
                         type="text"
                         id="state"
                         required
-                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
                     </div>
                     <div>
@@ -210,7 +210,7 @@ export default function CheckoutPage() {
                         type="text"
                         id="zip"
                         required
-                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
                     </div>
                   </div>
@@ -233,7 +233,7 @@ export default function CheckoutPage() {
                       type="text"
                       id="cardNumber"
                       required
-                      className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                      className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       placeholder="1234 5678 9012 3456"
                     />
                   </div>
@@ -250,7 +250,7 @@ export default function CheckoutPage() {
                         type="text"
                         id="expiry"
                         required
-                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                         placeholder="MM/YY"
                       />
                     </div>
@@ -265,7 +265,7 @@ export default function CheckoutPage() {
                         type="text"
                         id="cvv"
                         required
-                        className="w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                        className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                         placeholder="123"
                       />
                     </div>

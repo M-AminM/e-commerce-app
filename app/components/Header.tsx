@@ -15,14 +15,18 @@ export default function Header() {
   const [searchQuery, setSearchQuery] = useState("");
   const [suggestions, setSuggestions] = useState<Product[]>([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-  const [debounceTimer, setDebounceTimer] = useState<NodeJS.Timeout | null>(null);
+  const [debounceTimer, setDebounceTimer] = useState<NodeJS.Timeout | null>(
+    null
+  );
   const router = useRouter();
   const searchRef = useRef<HTMLDivElement>(null);
 
-  // Close suggestions when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (searchRef.current && !searchRef.current.contains(event.target as Node)) {
+      if (
+        searchRef.current &&
+        !searchRef.current.contains(event.target as Node)
+      ) {
         setShowSuggestions(false);
       }
     };
@@ -33,7 +37,6 @@ export default function Header() {
     };
   }, []);
 
-  // Debounced search
   useEffect(() => {
     if (debounceTimer) {
       clearTimeout(debounceTimer);
@@ -42,9 +45,9 @@ export default function Header() {
     if (searchQuery.trim().length > 0) {
       const timer = setTimeout(() => {
         const results = searchProducts(searchQuery);
-        setSuggestions(results.slice(0, 5)); // Show max 5 suggestions
+        setSuggestions(results.slice(0, 5));
         setShowSuggestions(true);
-      }, 300); // 300ms debounce
+      }, 300);
 
       setDebounceTimer(timer);
     } else {
@@ -77,10 +80,12 @@ export default function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white">
       <nav className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
-        {/* Top row: Logo, Products link, Cart, and Auth */}
         <div className="flex items-center justify-between gap-4 mb-3 sm:mb-0">
           <div className="flex items-center gap-4 lg:gap-8">
-            <Link href="/" className="text-2xl font-bold text-gray-900 shrink-0">
+            <Link
+              href="/"
+              className="text-2xl font-bold text-gray-900 shrink-0"
+            >
               <Image
                 src={"/images/logo.png"}
                 alt={"SafeShop"}
@@ -166,7 +171,6 @@ export default function Header() {
           </div>
         </div>
 
-        {/* Bottom row: Search bar (full width on mobile) */}
         <form onSubmit={handleSearch} className="w-full sm:max-w-md sm:mx-auto">
           <div className="relative" ref={searchRef}>
             <input
@@ -174,7 +178,7 @@ export default function Header() {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="جستجوی محصولات..."
-              className="w-full rounded-lg border border-gray-300 pr-10 pl-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="text-gray-800 w-full rounded-lg border border-gray-300 pr-10 pl-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
             <svg
               className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400"
@@ -190,7 +194,6 @@ export default function Header() {
               />
             </svg>
 
-            {/* Suggestions Dropdown */}
             {showSuggestions && suggestions.length > 0 && (
               <div className="absolute top-full mt-2 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-96 overflow-y-auto z-50">
                 {suggestions.map((product) => (
@@ -212,7 +215,9 @@ export default function Header() {
                       <h4 className="text-sm font-medium text-gray-900 truncate">
                         {product.name}
                       </h4>
-                      <p className="text-xs text-gray-500">{product.category}</p>
+                      <p className="text-xs text-gray-500">
+                        {product.category}
+                      </p>
                     </div>
                     <div className="text-sm font-semibold text-gray-900">
                       ${product.price.toFixed(2)}
@@ -243,7 +248,6 @@ export default function Header() {
               </div>
             )}
 
-            {/* No results message */}
             {showSuggestions && searchQuery.trim() && suggestions.length === 0 && (
               <div className="absolute top-full mt-2 w-full bg-white border border-gray-200 rounded-lg shadow-lg p-4 z-50">
                 <p className="text-sm text-gray-500 text-center">

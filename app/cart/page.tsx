@@ -56,7 +56,6 @@ export default function CartPage() {
         </h1>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
-          {/* Cart Items */}
           <div className="lg:col-span-2 space-y-4">
             {items.map((item) => (
               <div
@@ -64,7 +63,6 @@ export default function CartPage() {
                 className="bg-white rounded-lg shadow-sm p-4 sm:p-6"
               >
                 <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
-                  {/* Product Image */}
                   <div className="relative h-60 sm:h-32 w-full sm:w-32 shrink-0 overflow-hidden rounded-lg bg-gray-100">
                     <Image
                       src={item.image}
@@ -74,7 +72,6 @@ export default function CartPage() {
                     />
                   </div>
 
-                  {/* Product Details */}
                   <div className="flex flex-1 flex-col">
                     <div className="flex justify-between gap-4">
                       <div className="flex-1">
@@ -106,7 +103,6 @@ export default function CartPage() {
                       </button>
                     </div>
 
-                    {/* Quantity Controls */}
                     <div className="mt-4 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
                       <div className="flex items-center gap-3">
                         <label
@@ -120,7 +116,7 @@ export default function CartPage() {
                             onClick={() =>
                               updateQuantity(item.id, item.quantity - 1)
                             }
-                            className="rounded-lg border border-gray-300 p-2 hover:bg-gray-100 transition-colors"
+                            className="rounded-lg border border-gray-300 p-2 hover:bg-gray-100 transition-colors text-gray-800"
                             aria-label="Decrease quantity"
                           >
                             <svg
@@ -148,13 +144,13 @@ export default function CartPage() {
                                 parseInt(e.target.value) || 1
                               )
                             }
-                            className="w-16 rounded-lg border border-gray-300 px-3 py-2 text-center focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+                            className="text-gray-800 w-16 rounded-lg border border-gray-300 px-3 py-2 text-center focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                           />
                           <button
                             onClick={() =>
                               updateQuantity(item.id, item.quantity + 1)
                             }
-                            className="rounded-lg border border-gray-300 p-2 hover:bg-gray-100 transition-colors"
+                            className="rounded-lg border border-gray-300 p-2 hover:bg-gray-100 transition-colors text-gray-800"
                             aria-label="Increase quantity"
                           >
                             <svg
@@ -183,7 +179,6 @@ export default function CartPage() {
             ))}
           </div>
 
-          {/* Order Summary */}
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow-sm p-6 lg:sticky lg:top-24">
               <h2 className="text-lg font-semibold text-gray-900 mb-4">

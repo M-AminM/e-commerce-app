@@ -74,7 +74,7 @@ const SignIn = () => {
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
+                  className="text-gray-800 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   placeholder="you@example.com"
                 />
               </div>
@@ -96,8 +96,8 @@ const SignIn = () => {
                   required
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                   placeholder="رمز عبور خود را وارد کنید"
+                  className="text-gray-800 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
                 />
               </div>
             </div>
@@ -119,9 +119,8 @@ const SignIn = () => {
 
           <div className="mt-6 text-center text-sm text-gray-600">
             <p className="mb-2">
-              حساب نمایشی:{" "}
-              <span className="font-medium">demo@example.com</span> /{" "}
-              <span className="font-medium">password123</span>
+              حساب نمایشی: <span className="font-medium">demo@example.com</span>{" "}
+              / <span className="font-medium">password123</span>
             </p>
             <p>
               یا با هر ایمیلی{" "}

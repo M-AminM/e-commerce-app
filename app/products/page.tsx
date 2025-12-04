@@ -8,9 +8,10 @@ export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [sortBy, setSortBy] = useState("featured");
 
-  const filteredProducts = selectedCategory === "All"
-    ? products
-    : products.filter((product) => product.category === selectedCategory);
+  const filteredProducts =
+    selectedCategory === "All"
+      ? products
+      : products.filter((product) => product.category === selectedCategory);
 
   const sortedProducts = [...filteredProducts].sort((a, b) => {
     switch (sortBy) {
@@ -40,7 +41,6 @@ export default function ProductsPage() {
 
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-8 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-          {/* Category Filter */}
           <div className="flex flex-wrap gap-2">
             {categories.map((category) => (
               <button
@@ -57,7 +57,6 @@ export default function ProductsPage() {
             ))}
           </div>
 
-          {/* Sort Options */}
           <div className="flex items-center gap-2">
             <label htmlFor="sort" className="text-sm font-medium text-gray-700">
               مرتب‌سازی:
@@ -77,12 +76,10 @@ export default function ProductsPage() {
           </div>
         </div>
 
-        {/* Products Count */}
         <div className="mb-4 text-sm text-gray-600">
           نمایش {sortedProducts.length} محصول
         </div>
 
-        {/* Products Grid */}
         {sortedProducts.length > 0 ? (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {sortedProducts.map((product) => (

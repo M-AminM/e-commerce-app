@@ -15,14 +15,12 @@ const Search = () => {
   useEffect(() => {
     let filteredResults = searchProducts(query);
 
-    // Filter by category
     if (selectedCategory !== "All") {
       filteredResults = filteredResults.filter(
         (product) => product.category === selectedCategory
       );
     }
 
-    // Sort results
     switch (sortBy) {
       case "price-low":
         filteredResults.sort((a, b) => a.price - b.price);
@@ -37,7 +35,6 @@ const Search = () => {
         filteredResults.sort((a, b) => a.name.localeCompare(b.name));
         break;
       default:
-        // relevance - keep original order
         break;
     }
 
@@ -46,7 +43,6 @@ const Search = () => {
   return (
     <main className="min-h-screen bg-gray-50">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        {/* Search Header */}
         <div className="mb-8">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
             نتایج جستجو
@@ -57,10 +53,7 @@ const Search = () => {
             </p>
           )}
         </div>
-
-        {/* Filters and Sort */}
         <div className="mb-8 flex flex-col sm:flex-row gap-4 justify-between items-start sm:items-center">
-          {/* Category Filter */}
           <div className="flex flex-wrap gap-2">
             {categories.map((category) => (
               <button
@@ -77,7 +70,6 @@ const Search = () => {
             ))}
           </div>
 
-          {/* Sort Dropdown */}
           <div className="flex items-center gap-2">
             <label htmlFor="sort" className="text-sm font-medium text-gray-700">
               مرتب‌سازی:
@@ -97,7 +89,6 @@ const Search = () => {
           </div>
         </div>
 
-        {/* Results */}
         {results.length > 0 ? (
           <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {results.map((product) => (
