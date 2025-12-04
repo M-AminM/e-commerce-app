@@ -7,12 +7,26 @@ import Image from "next/image";
 import Link from "next/link";
 import { useAuth } from "@/contexts/AuthContext";
 import { useCart } from "@/contexts/CartContext";
+import { useOrder } from "@/contexts/OrderContext";
+import { ShippingAddress } from "@/types/order";
 
 export default function CheckoutPage() {
   const router = useRouter();
   const { user, loading } = useAuth();
   const { items: cartItems, getTotalPrice, clearCart } = useCart();
+  const { addOrder } = useOrder();
   const [isProcessing, setIsProcessing] = useState(false);
+
+  // Form state
+  const [formData, setFormData] = useState<ShippingAddress>({
+    firstName: "",
+    lastName: "",
+    address: "",
+    city: "",
+    state: "",
+    zip: "",
+    phone: "",
+  });
 
   useEffect(() => {
     if (!loading && !user) {
@@ -59,15 +73,41 @@ export default function CheckoutPage() {
   const tax = subtotal * 0.1;
   const total = subtotal + shipping + tax;
 
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { id, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [id]: value,
+    }));
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsProcessing(true);
 
     setTimeout(() => {
+      // Create order
+      addOrder({
+        userId: user!.email,
+        items: cartItems.map((item) => ({
+          id: item.id,
+          name: item.name,
+          price: item.price,
+          quantity: item.quantity,
+          image: item.image,
+        })),
+        shippingAddress: formData,
+        subtotal,
+        shipping,
+        tax,
+        total,
+        status: "processing",
+      });
+
       setIsProcessing(false);
       clearCart();
       alert("سفارش با موفقیت ثبت شد!");
-      router.push("/");
+      router.push("/profile");
     }, 2000);
   };
 
@@ -111,6 +151,8 @@ export default function CheckoutPage() {
                       type="tel"
                       id="phone"
                       required
+                      value={formData.phone}
+                      onChange={handleInputChange}
                       className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       placeholder="+1 (555) 123-4567"
                     />
@@ -135,6 +177,8 @@ export default function CheckoutPage() {
                         type="text"
                         id="firstName"
                         required
+                        value={formData.firstName}
+                        onChange={handleInputChange}
                         className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
                     </div>
@@ -149,6 +193,8 @@ export default function CheckoutPage() {
                         type="text"
                         id="lastName"
                         required
+                        value={formData.lastName}
+                        onChange={handleInputChange}
                         className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
                     </div>
@@ -165,6 +211,8 @@ export default function CheckoutPage() {
                       type="text"
                       id="address"
                       required
+                      value={formData.address}
+                      onChange={handleInputChange}
                       className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       placeholder="123 Main St"
                     />
@@ -182,6 +230,8 @@ export default function CheckoutPage() {
                         type="text"
                         id="city"
                         required
+                        value={formData.city}
+                        onChange={handleInputChange}
                         className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
                     </div>
@@ -196,6 +246,8 @@ export default function CheckoutPage() {
                         type="text"
                         id="state"
                         required
+                        value={formData.state}
+                        onChange={handleInputChange}
                         className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
                     </div>
@@ -210,6 +262,8 @@ export default function CheckoutPage() {
                         type="text"
                         id="zip"
                         required
+                        value={formData.zip}
+                        onChange={handleInputChange}
                         className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                       />
                     </div>

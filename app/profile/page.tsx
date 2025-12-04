@@ -1,11 +1,16 @@
 "use client";
 
 import { useAuth } from "@/contexts/AuthContext";
+import { useOrder } from "@/contexts/OrderContext";
 import { redirect } from "next/navigation";
 import { useEffect } from "react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default function ProfilePage() {
   const { user, loading, logout } = useAuth();
+  const { getUserOrders, loading: ordersLoading } = useOrder();
+  const userOrders = getUserOrders();
 
   useEffect(() => {
     if (!loading && !user) {
@@ -101,23 +106,119 @@ export default function ProfilePage() {
 
             <div className="bg-white rounded-lg shadow-sm p-6">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">تاریخچه سفارشات</h3>
-              <div className="text-center py-8 text-gray-500">
-                <svg
-                  className="mx-auto h-12 w-12 text-gray-400 mb-3"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                  />
-                </svg>
-                <p>هنوز سفارشی ندارید</p>
-                <p className="text-sm mt-1">برای مشاهده تاریخچه سفارشات خود، خرید کنید</p>
-              </div>
+              {ordersLoading ? (
+                <div className="text-center py-8">
+                  <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+                  <p className="mt-2 text-gray-600">در حال بارگذاری...</p>
+                </div>
+              ) : userOrders.length === 0 ? (
+                <div className="text-center py-8 text-gray-500">
+                  <svg
+                    className="mx-auto h-12 w-12 text-gray-400 mb-3"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
+                    />
+                  </svg>
+                  <p>هنوز سفارشی ندارید</p>
+                  <p className="text-sm mt-1">برای مشاهده تاریخچه سفارشات خود، خرید کنید</p>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {userOrders.map((order) => (
+                    <div
+                      key={order.id}
+                      className="border border-gray-200 rounded-lg p-4 hover:shadow-md transition-shadow"
+                    >
+                      <div className="flex justify-between items-start mb-3">
+                        <div>
+                          <p className="text-sm font-medium text-gray-900">
+                            سفارش #{order.id}
+                          </p>
+                          <p className="text-xs text-gray-500 mt-1">
+                            {new Date(order.createdAt).toLocaleDateString("fa-IR", {
+                              year: "numeric",
+                              month: "long",
+                              day: "numeric",
+                              hour: "2-digit",
+                              minute: "2-digit",
+                            })}
+                          </p>
+                        </div>
+                        <span
+                          className={`px-3 py-1 text-xs font-medium rounded-full ${
+                            order.status === "delivered"
+                              ? "bg-green-100 text-green-800"
+                              : order.status === "shipped"
+                              ? "bg-blue-100 text-blue-800"
+                              : order.status === "processing"
+                              ? "bg-yellow-100 text-yellow-800"
+                              : order.status === "cancelled"
+                              ? "bg-red-100 text-red-800"
+                              : "bg-gray-100 text-gray-800"
+                          }`}
+                        >
+                          {order.status === "delivered"
+                            ? "تحویل شده"
+                            : order.status === "shipped"
+                            ? "ارسال شده"
+                            : order.status === "processing"
+                            ? "در حال پردازش"
+                            : order.status === "cancelled"
+                            ? "لغو شده"
+                            : "در انتظار"}
+                        </span>
+                      </div>
+
+                      <div className="space-y-2 mb-3">
+                        {order.items.slice(0, 2).map((item) => (
+                          <div key={item.id} className="flex gap-3">
+                            <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded bg-gray-100">
+                              <Image
+                                src={item.image}
+                                alt={item.name}
+                                fill
+                                className="object-cover"
+                              />
+                            </div>
+                            <div className="flex-1 min-w-0">
+                              <p className="text-sm font-medium text-gray-900 truncate">
+                                {item.name}
+                              </p>
+                              <p className="text-xs text-gray-500">
+                                تعداد: {item.quantity} × ${item.price.toFixed(2)}
+                              </p>
+                            </div>
+                          </div>
+                        ))}
+                        {order.items.length > 2 && (
+                          <p className="text-xs text-gray-500">
+                            و {order.items.length - 2} محصول دیگر
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="flex justify-between items-center pt-3 border-t border-gray-200">
+                        <p className="text-sm font-semibold text-gray-900">
+                          مجموع: ${order.total.toFixed(2)}
+                        </p>
+                        <Link
+                          href={`/products`}
+                          className="text-sm text-blue-600 hover:text-blue-700 font-medium"
+                        >
+                          خرید مجدد
+                        </Link>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              )}
             </div>
 
             <div className="bg-white rounded-lg shadow-sm p-6">
