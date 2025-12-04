@@ -1,11 +1,13 @@
 "use client";
 
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { ShippingAddress } from "@/types/order";
 
 interface User {
   id: string;
   name: string;
   email: string;
+  savedAddress?: ShippingAddress;
 }
 
 interface AuthContextType {
@@ -15,6 +17,7 @@ interface AuthContextType {
   signup: (email: string, password: string, name: string) => Promise<void>;
   logout: () => Promise<void>;
   refreshUser: () => Promise<void>;
+  saveAddress: (address: ShippingAddress) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -85,8 +88,23 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     await fetchUser();
   };
 
+  const saveAddress = (address: ShippingAddress) => {
+    if (user) {
+      const updatedUser = { ...user, savedAddress: address };
+      setUser(updatedUser);
+
+      // Update in localStorage
+      const users = JSON.parse(localStorage.getItem("users") || "[]");
+      const userIndex = users.findIndex((u: User) => u.email === user.email);
+      if (userIndex !== -1) {
+        users[userIndex] = updatedUser;
+        localStorage.setItem("users", JSON.stringify(users));
+      }
+    }
+  };
+
   return (
-    <AuthContext.Provider value={{ user, loading, login, signup, logout, refreshUser }}>
+    <AuthContext.Provider value={{ user, loading, login, signup, logout, refreshUser, saveAddress }}>
       {children}
     </AuthContext.Provider>
   );

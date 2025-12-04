@@ -12,7 +12,7 @@ import { ShippingAddress } from "@/types/order";
 
 export default function CheckoutPage() {
   const router = useRouter();
-  const { user, loading } = useAuth();
+  const { user, loading, saveAddress } = useAuth();
   const { items: cartItems, getTotalPrice, clearCart } = useCart();
   const { addOrder } = useOrder();
   const [isProcessing, setIsProcessing] = useState(false);
@@ -27,6 +27,15 @@ export default function CheckoutPage() {
     zip: "",
     phone: "",
   });
+
+  const [saveAddressForFuture, setSaveAddressForFuture] = useState(true);
+
+  // Load saved address when user is available
+  useEffect(() => {
+    if (user?.savedAddress) {
+      setFormData(user.savedAddress);
+    }
+  }, [user]);
 
   useEffect(() => {
     if (!loading && !user) {
@@ -86,6 +95,11 @@ export default function CheckoutPage() {
     setIsProcessing(true);
 
     setTimeout(() => {
+      // Save address for future orders if checkbox is checked
+      if (saveAddressForFuture) {
+        saveAddress(formData);
+      }
+
       // Create order
       addOrder({
         userId: user!.email,
@@ -325,6 +339,26 @@ export default function CheckoutPage() {
                     </div>
                   </div>
                 </div>
+              </div>
+
+              <div className="bg-white rounded-lg shadow-sm p-6">
+                <div className="flex items-center">
+                  <input
+                    type="checkbox"
+                    id="saveAddress"
+                    checked={saveAddressForFuture}
+                    onChange={(e) => setSaveAddressForFuture(e.target.checked)}
+                    className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                  />
+                  <label htmlFor="saveAddress" className="mr-2 text-sm text-gray-700">
+                    ذخیره این آدرس برای سفارشات بعدی
+                  </label>
+                </div>
+                {user?.savedAddress && (
+                  <p className="mt-2 text-xs text-gray-500">
+                    آدرس ذخیره‌شده شما به‌طور خودکار در این فرم بارگذاری شده است
+                  </p>
+                )}
               </div>
 
               <button
