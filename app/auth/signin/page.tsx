@@ -37,15 +37,15 @@ const SignIn = () => {
       <div className="max-w-md w-full space-y-8">
         <div>
           <h2 className="mt-6 text-center text-3xl font-bold text-gray-900">
-            Sign in to your account
+            ورود به حساب کاربری
           </h2>
           <p className="mt-2 text-center text-sm text-gray-600">
-            Or{" "}
+            یا{" "}
             <Link
               href="/auth/signup"
               className="font-medium text-blue-600 hover:text-blue-500"
             >
-              create a new account
+              حساب جدید بسازید
             </Link>
           </p>
         </div>
@@ -63,7 +63,7 @@ const SignIn = () => {
                 htmlFor="email"
                 className="block text-sm font-medium text-gray-700"
               >
-                Email address
+                آدرس ایمیل
               </label>
               <div className="mt-1">
                 <input
@@ -85,7 +85,7 @@ const SignIn = () => {
                 htmlFor="password"
                 className="block text-sm font-medium text-gray-700"
               >
-                Password
+                رمز عبور
               </label>
               <div className="mt-1">
                 <input
@@ -97,7 +97,7 @@ const SignIn = () => {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-                  placeholder="Enter your password"
+                  placeholder="رمز عبور خود را وارد کنید"
                 />
               </div>
             </div>
@@ -112,26 +112,26 @@ const SignIn = () => {
                     : "bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
                 }`}
               >
-                {isLoading ? "Signing in..." : "Sign in"}
+                {isLoading ? "در حال ورود..." : "ورود"}
               </button>
             </div>
           </form>
 
           <div className="mt-6 text-center text-sm text-gray-600">
             <p className="mb-2">
-              Demo account:{" "}
+              حساب نمایشی:{" "}
               <span className="font-medium">demo@example.com</span> /{" "}
               <span className="font-medium">password123</span>
             </p>
             <p>
-              Or{" "}
+              یا با هر ایمیلی{" "}
               <Link
                 href="/auth/signup"
                 className="font-medium text-blue-600 hover:text-blue-500"
               >
-                sign up
+                ثبت‌نام
               </Link>{" "}
-              with any email
+              کنید
             </p>
           </div>
         </div>
@@ -142,7 +142,7 @@ const SignIn = () => {
 
 export default function SignInPage() {
   return (
-    <Suspense fallback={<>Loading ...</>}>
+    <Suspense fallback={<>در حال بارگذاری ...</>}>
       <SignIn />
     </Suspense>
   );

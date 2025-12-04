@@ -25,7 +25,7 @@ export default function CheckoutPage() {
       <main className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Loading...</p>
+          <p className="mt-4 text-gray-600">در حال بارگذاری...</p>
         </div>
       </main>
     );
@@ -40,13 +40,13 @@ export default function CheckoutPage() {
       <main className="min-h-screen bg-gray-50">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900">Your cart is empty</h2>
-            <p className="mt-2 text-gray-600">Add items to your cart before checking out</p>
+            <h2 className="text-3xl font-bold text-gray-900">سبد خرید شما خالی است</h2>
+            <p className="mt-2 text-gray-600">قبل از پرداخت، محصولات را به سبد خرید اضافه کنید</p>
             <Link
               href="/products"
               className="mt-8 inline-block rounded-lg bg-blue-600 px-8 py-3 text-base font-semibold text-white hover:bg-blue-700 transition-colors"
             >
-              Continue Shopping
+              ادامه خرید
             </Link>
           </div>
         </div>
@@ -66,7 +66,7 @@ export default function CheckoutPage() {
     setTimeout(() => {
       setIsProcessing(false);
       clearCart();
-      alert("Order placed successfully!");
+      alert("سفارش با موفقیت ثبت شد!");
       router.push("/");
     }, 2000);
   };
@@ -74,14 +74,14 @@ export default function CheckoutPage() {
   return (
     <main className="min-h-screen bg-gray-50">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-8">Checkout</h1>
+        <h1 className="text-3xl font-bold text-gray-900 mb-8">پرداخت</h1>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div className="lg:col-span-2">
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h2 className="text-xl font-semibold text-gray-900 mb-4">
-                  Contact Information
+                  اطلاعات تماس
                 </h2>
                 <div className="space-y-4">
                   <div>
@@ -89,7 +89,7 @@ export default function CheckoutPage() {
                       htmlFor="email"
                       className="block text-sm font-medium text-gray-700 mb-1"
                     >
-                      Email Address
+                      آدرس ایمیل
                     </label>
                     <input
                       type="email"
@@ -105,7 +105,7 @@ export default function CheckoutPage() {
                       htmlFor="phone"
                       className="block text-sm font-medium text-gray-700 mb-1"
                     >
-                      Phone Number
+                      شماره تلفن
                     </label>
                     <input
                       type="tel"
@@ -120,7 +120,7 @@ export default function CheckoutPage() {
 
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h2 className="text-xl font-semibold text-gray-900 mb-4">
-                  Shipping Address
+                  آدرس ارسال
                 </h2>
                 <div className="space-y-4">
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -129,7 +129,7 @@ export default function CheckoutPage() {
                         htmlFor="firstName"
                         className="block text-sm font-medium text-gray-700 mb-1"
                       >
-                        First Name
+                        نام
                       </label>
                       <input
                         type="text"
@@ -143,7 +143,7 @@ export default function CheckoutPage() {
                         htmlFor="lastName"
                         className="block text-sm font-medium text-gray-700 mb-1"
                       >
-                        Last Name
+                        نام خانوادگی
                       </label>
                       <input
                         type="text"
@@ -159,7 +159,7 @@ export default function CheckoutPage() {
                       htmlFor="address"
                       className="block text-sm font-medium text-gray-700 mb-1"
                     >
-                      Street Address
+                      آدرس خیابان
                     </label>
                     <input
                       type="text"
@@ -176,7 +176,7 @@ export default function CheckoutPage() {
                         htmlFor="city"
                         className="block text-sm font-medium text-gray-700 mb-1"
                       >
-                        City
+                        شهر
                       </label>
                       <input
                         type="text"
@@ -190,7 +190,7 @@ export default function CheckoutPage() {
                         htmlFor="state"
                         className="block text-sm font-medium text-gray-700 mb-1"
                       >
-                        State
+                        استان
                       </label>
                       <input
                         type="text"
@@ -204,7 +204,7 @@ export default function CheckoutPage() {
                         htmlFor="zip"
                         className="block text-sm font-medium text-gray-700 mb-1"
                       >
-                        ZIP Code
+                        کد پستی
                       </label>
                       <input
                         type="text"
@@ -219,7 +219,7 @@ export default function CheckoutPage() {
 
               <div className="bg-white rounded-lg shadow-sm p-6">
                 <h2 className="text-xl font-semibold text-gray-900 mb-4">
-                  Payment Information
+                  اطلاعات پرداخت
                 </h2>
                 <div className="space-y-4">
                   <div>
@@ -227,7 +227,7 @@ export default function CheckoutPage() {
                       htmlFor="cardNumber"
                       className="block text-sm font-medium text-gray-700 mb-1"
                     >
-                      Card Number
+                      شماره کارت
                     </label>
                     <input
                       type="text"
@@ -244,7 +244,7 @@ export default function CheckoutPage() {
                         htmlFor="expiry"
                         className="block text-sm font-medium text-gray-700 mb-1"
                       >
-                        Expiration Date
+                        تاریخ انقضا
                       </label>
                       <input
                         type="text"
@@ -282,7 +282,7 @@ export default function CheckoutPage() {
                     : "bg-blue-600 hover:bg-blue-700"
                 }`}
               >
-                {isProcessing ? "Processing..." : "Place Order"}
+                {isProcessing ? "در حال پردازش..." : "ثبت سفارش"}
               </button>
             </form>
           </div>
@@ -290,7 +290,7 @@ export default function CheckoutPage() {
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow-sm p-6 sticky top-24">
               <h2 className="text-lg font-semibold text-gray-900 mb-4">
-                Order Summary
+                خلاصه سفارش
               </h2>
 
               <div className="space-y-3 mb-6 max-h-64 overflow-y-auto">
@@ -309,7 +309,7 @@ export default function CheckoutPage() {
                         {item.name}
                       </h3>
                       <p className="text-sm text-gray-600">
-                        Qty: {item.quantity}
+                        تعداد: {item.quantity}
                       </p>
                       <p className="text-sm font-semibold text-gray-900">
                         ${(item.price * item.quantity).toFixed(2)}
@@ -321,22 +321,22 @@ export default function CheckoutPage() {
 
               <div className="space-y-3 border-t border-gray-200 pt-4">
                 <div className="flex justify-between text-gray-600">
-                  <span>Subtotal</span>
+                  <span>جمع جزء</span>
                   <span>${subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-gray-600">
-                  <span>Shipping</span>
+                  <span>هزینه ارسال</span>
                   <span>
-                    {shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}
+                    {shipping === 0 ? "رایگان" : `$${shipping.toFixed(2)}`}
                   </span>
                 </div>
                 <div className="flex justify-between text-gray-600">
-                  <span>Tax</span>
+                  <span>مالیات</span>
                   <span>${tax.toFixed(2)}</span>
                 </div>
                 <div className="border-t border-gray-200 pt-3">
                   <div className="flex justify-between text-lg font-bold text-gray-900">
-                    <span>Total</span>
+                    <span>جمع کل</span>
                     <span>${total.toFixed(2)}</span>
                   </div>
                 </div>
@@ -357,7 +357,7 @@ export default function CheckoutPage() {
                       d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
                     />
                   </svg>
-                  SSL Encrypted
+                  رمزگذاری SSL
                 </div>
                 <div className="flex items-center">
                   <svg
@@ -373,7 +373,7 @@ export default function CheckoutPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  30-day money back guarantee
+                  ضمانت بازگشت وجه تا 30 روز
                 </div>
               </div>
             </div>

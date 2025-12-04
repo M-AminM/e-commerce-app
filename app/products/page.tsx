@@ -31,9 +31,9 @@ export default function ProductsPage() {
     <main className="min-h-screen bg-gray-50">
       <div className="bg-white border-b border-gray-200">
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold text-gray-900">All Products</h1>
+          <h1 className="text-3xl font-bold text-gray-900">تمام محصولات</h1>
           <p className="mt-2 text-gray-600">
-            Browse our collection of {products.length} amazing products
+            مجموعه‌ای از {products.length} محصول شگفت‌انگیز ما را مرور کنید
           </p>
         </div>
       </div>
@@ -60,7 +60,7 @@ export default function ProductsPage() {
           {/* Sort Options */}
           <div className="flex items-center gap-2">
             <label htmlFor="sort" className="text-sm font-medium text-gray-700">
-              Sort by:
+              مرتب‌سازی:
             </label>
             <select
               id="sort"
@@ -68,18 +68,18 @@ export default function ProductsPage() {
               onChange={(e) => setSortBy(e.target.value)}
               className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             >
-              <option value="featured">Featured</option>
-              <option value="name">Name (A-Z)</option>
-              <option value="price-low">Price (Low to High)</option>
-              <option value="price-high">Price (High to Low)</option>
-              <option value="rating">Rating</option>
+              <option value="featured">ویژه</option>
+              <option value="name">نام (الف-ی)</option>
+              <option value="price-low">قیمت (کم به زیاد)</option>
+              <option value="price-high">قیمت (زیاد به کم)</option>
+              <option value="rating">امتیاز</option>
             </select>
           </div>
         </div>
 
         {/* Products Count */}
         <div className="mb-4 text-sm text-gray-600">
-          Showing {sortedProducts.length} {sortedProducts.length === 1 ? "product" : "products"}
+          نمایش {sortedProducts.length} محصول
         </div>
 
         {/* Products Grid */}
@@ -111,9 +111,9 @@ export default function ProductsPage() {
                 d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
               />
             </svg>
-            <p className="text-lg font-medium text-gray-900">No products found</p>
+            <p className="text-lg font-medium text-gray-900">محصولی یافت نشد</p>
             <p className="mt-1 text-sm text-gray-600">
-              Try selecting a different category
+              دسته‌بندی دیگری را انتخاب کنید
             </p>
           </div>
         )}

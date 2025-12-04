@@ -94,7 +94,7 @@ export default function Header() {
               href="/products"
               className="text-gray-700 hover:text-gray-900 transition-colors text-sm sm:text-base"
             >
-              Products
+              محصولات
             </Link>
           </div>
 
@@ -152,7 +152,7 @@ export default function Header() {
                   onClick={logout}
                   className="hidden sm:block rounded-lg px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 transition-colors"
                 >
-                  Sign Out
+                  خروج
                 </button>
               </div>
             ) : (
@@ -160,7 +160,7 @@ export default function Header() {
                 href="/auth/signin"
                 className="rounded-lg bg-blue-600 px-3 sm:px-4 py-2 text-xs sm:text-sm font-medium text-white hover:bg-blue-700 transition-colors"
               >
-                Sign In
+                ورود
               </Link>
             )}
           </div>
@@ -173,11 +173,11 @@ export default function Header() {
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search products..."
-              className="w-full rounded-lg border border-gray-300 pl-10 pr-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              placeholder="جستجوی محصولات..."
+              className="w-full rounded-lg border border-gray-300 pr-10 pl-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             />
             <svg
-              className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400"
+              className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -237,7 +237,7 @@ export default function Header() {
                         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
                       />
                     </svg>
-                    View all results for &quot;{searchQuery}&quot;
+                    مشاهده تمام نتایج برای &quot;{searchQuery}&quot;
                   </button>
                 )}
               </div>
@@ -247,7 +247,7 @@ export default function Header() {
             {showSuggestions && searchQuery.trim() && suggestions.length === 0 && (
               <div className="absolute top-full mt-2 w-full bg-white border border-gray-200 rounded-lg shadow-lg p-4 z-50">
                 <p className="text-sm text-gray-500 text-center">
-                  No products found for &quot;{searchQuery}&quot;
+                  محصولی برای &quot;{searchQuery}&quot; یافت نشد
                 </p>
               </div>
             )}

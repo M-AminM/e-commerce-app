@@ -31,16 +31,16 @@ export default function CartPage() {
               />
             </svg>
             <h2 className="mt-6 text-3xl font-bold text-gray-900">
-              Your cart is empty
+              سبد خرید شما خالی است
             </h2>
             <p className="mt-2 text-gray-600">
-              Start shopping to add items to your cart
+              برای افزودن محصولات به سبد خرید، خرید کنید
             </p>
             <Link
               href="/products"
               className="mt-8 inline-block rounded-lg bg-blue-600 px-8 py-3 text-base font-semibold text-white hover:bg-blue-700 transition-colors"
             >
-              Continue Shopping
+              ادامه خرید
             </Link>
           </div>
         </div>
@@ -52,7 +52,7 @@ export default function CartPage() {
     <main className="min-h-screen bg-gray-50">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">
-          Shopping Cart
+          سبد خرید
         </h1>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
@@ -113,7 +113,7 @@ export default function CartPage() {
                           htmlFor={`quantity-${item.id}`}
                           className="text-sm font-medium text-gray-700 whitespace-nowrap"
                         >
-                          Quantity:
+                          تعداد:
                         </label>
                         <div className="flex items-center gap-2">
                           <button
@@ -174,7 +174,7 @@ export default function CartPage() {
                         </div>
                       </div>
                       <p className="text-base sm:text-lg font-semibold text-gray-900 sm:ml-auto">
-                        Subtotal: ${(item.price * item.quantity).toFixed(2)}
+                        جمع جزء: ${(item.price * item.quantity).toFixed(2)}
                       </p>
                     </div>
                   </div>
@@ -187,34 +187,34 @@ export default function CartPage() {
           <div className="lg:col-span-1">
             <div className="bg-white rounded-lg shadow-sm p-6 lg:sticky lg:top-24">
               <h2 className="text-lg font-semibold text-gray-900 mb-4">
-                Order Summary
+                خلاصه سفارش
               </h2>
 
               <div className="space-y-3 border-b border-gray-200 pb-4">
                 <div className="flex justify-between text-gray-600">
-                  <span>Subtotal</span>
+                  <span>جمع جزء</span>
                   <span>${subtotal.toFixed(2)}</span>
                 </div>
                 <div className="flex justify-between text-gray-600">
-                  <span>Shipping</span>
+                  <span>هزینه ارسال</span>
                   <span>
-                    {shipping === 0 ? "Free" : `$${shipping.toFixed(2)}`}
+                    {shipping === 0 ? "رایگان" : `$${shipping.toFixed(2)}`}
                   </span>
                 </div>
                 <div className="flex justify-between text-gray-600">
-                  <span>Tax (10%)</span>
+                  <span>مالیات (10%)</span>
                   <span>${tax.toFixed(2)}</span>
                 </div>
               </div>
 
               <div className="mt-4 flex justify-between text-lg font-bold text-gray-900">
-                <span>Total</span>
+                <span>جمع کل</span>
                 <span>${total.toFixed(2)}</span>
               </div>
 
               {subtotal < 100 && (
                 <p className="mt-4 text-sm text-gray-600">
-                  Add ${(100 - subtotal).toFixed(2)} more for free shipping!
+                  ${(100 - subtotal).toFixed(2)} بیشتر اضافه کنید تا ارسال رایگان شود!
                 </p>
               )}
 
@@ -222,14 +222,14 @@ export default function CartPage() {
                 href="/checkout"
                 className="mt-6 block w-full rounded-lg bg-blue-600 px-6 py-3 text-center text-base font-semibold text-white hover:bg-blue-700 transition-colors"
               >
-                Proceed to Checkout
+                ادامه به پرداخت
               </Link>
 
               <Link
                 href="/products"
                 className="mt-3 block w-full rounded-lg border border-gray-300 px-6 py-3 text-center text-base font-semibold text-gray-700 hover:bg-gray-50 transition-colors"
               >
-                Continue Shopping
+                ادامه خرید
               </Link>
             </div>
           </div>

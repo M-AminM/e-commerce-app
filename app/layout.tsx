@@ -16,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SafeShop - Your Online Store",
-  description: "Shop the best products at the best prices",
+  title: "SafeShop - فروشگاه آنلاین شما",
+  description: "بهترین محصولات را با بهترین قیمت‌ها خریداری کنید",
 };
 
 export default function RootLayout({
@@ -26,7 +26,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="fa" dir="rtl">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased bg-gray-50`}
       >

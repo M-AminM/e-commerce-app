@@ -21,16 +21,16 @@ export default function ProductDetailPage() {
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="text-center">
             <h2 className="text-3xl font-bold text-gray-900">
-              Product not found
+              محصول یافت نشد
             </h2>
             <p className="mt-2 text-gray-600">
-              The product you're looking for doesn't exist
+              محصولی که به دنبال آن هستید وجود ندارد
             </p>
             <Link
               href="/products"
               className="mt-8 inline-block rounded-lg bg-blue-600 px-8 py-3 text-base font-semibold text-white hover:bg-blue-700 transition-colors"
             >
-              Browse Products
+              مشاهده محصولات
             </Link>
           </div>
         </div>
@@ -61,11 +61,11 @@ export default function ProductDetailPage() {
         {/* Breadcrumb */}
         <nav className="mb-8 flex items-center gap-2 text-sm text-gray-600">
           <Link href="/" className="hover:text-gray-900">
-            Home
+            خانه
           </Link>
           <span>/</span>
           <Link href="/products" className="hover:text-gray-900">
-            Products
+            محصولات
           </Link>
           <span>/</span>
           <span className="text-gray-900">{product.name}</span>
@@ -120,14 +120,14 @@ export default function ProductDetailPage() {
                 ))}
               </div>
               <p className="text-sm text-gray-600">
-                {product.rating} ({product.reviews} reviews)
+                {product.rating} ({product.reviews} نظر)
               </p>
             </div>
 
             {/* Description */}
             <div className="mb-8">
               <h2 className="text-lg font-semibold text-gray-900 mb-2">
-                Description
+                توضیحات
               </h2>
               <p className="text-gray-600 leading-relaxed">
                 {product.description}
@@ -151,7 +151,7 @@ export default function ProductDetailPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  In Stock
+                  موجود در انبار
                 </p>
               ) : (
                 <p className="flex items-center gap-2 text-red-600">
@@ -168,7 +168,7 @@ export default function ProductDetailPage() {
                       d="M6 18L18 6M6 6l12 12"
                     />
                   </svg>
-                  Out of Stock
+                  ناموجود
                 </p>
               )}
             </div>
@@ -180,7 +180,7 @@ export default function ProductDetailPage() {
                   htmlFor="quantity"
                   className="text-sm font-medium text-gray-700"
                 >
-                  Quantity:
+                  تعداد:
                 </label>
                 <div className="flex items-center gap-2">
                   <button
@@ -244,7 +244,7 @@ export default function ProductDetailPage() {
                 }`}
               >
                 {!product.inStock ? (
-                  "Out of Stock"
+                  "ناموجود"
                 ) : isAdding ? (
                   <span className="flex items-center justify-center gap-2">
                     <svg
@@ -260,7 +260,7 @@ export default function ProductDetailPage() {
                         d="M5 13l4 4L19 7"
                       />
                     </svg>
-                    Added to Cart!
+                    به سبد اضافه شد!
                   </span>
                 ) : (
                   <span className="flex items-center justify-center gap-2">
@@ -277,7 +277,7 @@ export default function ProductDetailPage() {
                         d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                       />
                     </svg>
-                    Add to Cart
+                    افزودن به سبد
                   </span>
                 )}
               </button>
@@ -300,7 +300,7 @@ export default function ProductDetailPage() {
                   />
                 </svg>
                 <span className="text-sm">
-                  Free shipping on orders over \$100
+                  ارسال رایگان برای سفارش‌های بالای 100 دلار
                 </span>
               </div>
               <div className="flex items-center gap-3 text-gray-600">
@@ -317,7 +317,7 @@ export default function ProductDetailPage() {
                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
-                <span className="text-sm">30-day return policy</span>
+                <span className="text-sm">امکان بازگشت تا 30 روز</span>
               </div>
               <div className="flex items-center gap-3 text-gray-600">
                 <svg
@@ -333,7 +333,7 @@ export default function ProductDetailPage() {
                     d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
                   />
                 </svg>
-                <span className="text-sm">Secure checkout</span>
+                <span className="text-sm">پرداخت امن</span>
               </div>
             </div>
           </div>

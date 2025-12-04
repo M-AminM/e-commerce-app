@@ -49,12 +49,11 @@ const Search = () => {
         {/* Search Header */}
         <div className="mb-8">
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">
-            Search Results
+            نتایج جستجو
           </h1>
           {query && (
             <p className="text-gray-600">
-              Showing {results.length} result{results.length !== 1 ? "s" : ""}{" "}
-              for &quot;{query}&quot;
+              نمایش {results.length} نتیجه برای &quot;{query}&quot;
             </p>
           )}
         </div>
@@ -81,7 +80,7 @@ const Search = () => {
           {/* Sort Dropdown */}
           <div className="flex items-center gap-2">
             <label htmlFor="sort" className="text-sm font-medium text-gray-700">
-              Sort by:
+              مرتب‌سازی:
             </label>
             <select
               id="sort"
@@ -89,11 +88,11 @@ const Search = () => {
               onChange={(e) => setSortBy(e.target.value)}
               className="rounded-lg border border-gray-300 px-4 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             >
-              <option value="relevance">Relevance</option>
-              <option value="price-low">Price: Low to High</option>
-              <option value="price-high">Price: High to Low</option>
-              <option value="rating">Rating</option>
-              <option value="name">Name</option>
+              <option value="relevance">مرتبط‌ترین</option>
+              <option value="price-low">قیمت: کم به زیاد</option>
+              <option value="price-high">قیمت: زیاد به کم</option>
+              <option value="rating">امتیاز</option>
+              <option value="name">نام</option>
             </select>
           </div>
         </div>
@@ -128,12 +127,12 @@ const Search = () => {
               />
             </svg>
             <h2 className="mt-6 text-2xl font-bold text-gray-900">
-              No results found
+              نتیجه‌ای یافت نشد
             </h2>
             <p className="mt-2 text-gray-600">
               {query
-                ? `We couldn't find any products matching "${query}"`
-                : "Try searching for a product"}
+                ? `محصولی مطابق با "${query}" پیدا نشد`
+                : "جستجوی محصولات"}
             </p>
           </div>
         )}
@@ -144,7 +143,7 @@ const Search = () => {
 
 export default function SearchPage() {
   return (
-    <Suspense fallback={<>Loading ...</>}>
+    <Suspense fallback={<>در حال بارگذاری ...</>}>
       <Search />
     </Suspense>
   );
