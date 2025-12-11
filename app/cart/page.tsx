@@ -52,9 +52,7 @@ export default function CartPage() {
   return (
     <main className="min-h-screen bg-gray-50">
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-8">
-          سبد خرید
-        </h1>
+        <h1 className="text-2xl font-bold text-gray-900 mb-8">سبد خرید</h1>
 
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div className="lg:col-span-2 space-y-4">
@@ -79,7 +77,7 @@ export default function CartPage() {
                         <h3 className="text-base sm:text-lg font-semibold text-gray-900 line-clamp-2">
                           {item.name}
                         </h3>
-                        <p className="mt-1 text-lg sm:text-xl font-bold text-gray-900">
+                        <p className="mt-1 text-base sm:text-lg font-bold text-gray-900">
                           ${digitsEnToFa(item.price.toFixed(2))}
                         </p>
                       </div>

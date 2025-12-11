@@ -10,10 +10,10 @@ export default function Home() {
       <section className="bg-linear-to-r from-blue-600 to-blue-800 text-white">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
+            <h1 className="text-3xl font-bold tracking-tight sm:text-5xl md:text-5xl">
               به SafeShop خوش آمدید
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg sm:text-xl">
+            <p className="mx-auto mt-6 max-w-2xl text-base sm:text-lg">
               محصولات شگفت‌انگیز را با قیمت‌های بی‌نظیر کشف کنید. جدیدترین
               روندها در الکترونیک، مد و لوازم خانگی را خریداری کنید.
             </p>
@@ -37,16 +37,16 @@ export default function Home() {
 
       <section className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="mb-8 flex items-center justify-between">
-          <h2 className="text-3xl font-bold text-gray-200">محصولات ویژه</h2>
+          <h2 className="text-2xl font-bold text-gray-200">محصولات ویژه</h2>
           <Link
             href="/products"
-            className="text-blue-600 hover:text-blue-700 font-semibold"
+            className="text-blue-600 hover:text-blue-700 font-semibold text-sm"
           >
             مشاهده همه ←
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 sm:gap-6 md:grid-cols-3 lg:grid-cols-4">
           {featuredProducts.map((product) => (
             <ProductCard
               key={product.id}

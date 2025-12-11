@@ -87,12 +87,12 @@ export default function ProductDetailPage() {
               </p>
             )}
 
-            <h1 className="text-4xl font-bold text-gray-900 mb-4">
+            <h1 className="text-2xl font-bold text-gray-900 mb-4">
               {product.name}
             </h1>
 
             <div className="mb-6">
-              <p className="text-3xl font-bold text-gray-900">
+              <p className="text-xl font-bold text-gray-900">
                 \${digitsEnToFa(product.price.toFixed(2))}
               </p>
             </div>
@@ -121,17 +121,17 @@ export default function ProductDetailPage() {
             </div>
 
             <div className="mb-8">
-              <h2 className="text-lg font-semibold text-gray-900 mb-2">
+              <h2 className="text-base font-semibold text-gray-900 mb-2">
                 توضیحات
               </h2>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="text-gray-600 leading-relaxed text-base">
                 {product.description}
               </p>
             </div>
 
             <div className="mb-6">
               {product.inStock ? (
-                <p className="flex items-center gap-2 text-green-600">
+                <p className="flex items-center gap-2 text-green-600 text-sm">
                   <svg
                     className="h-5 w-5"
                     fill="none"
@@ -244,7 +244,7 @@ export default function ProductDetailPage() {
                 {!product.inStock ? (
                   "ناموجود"
                 ) : isAdding ? (
-                  <span className="flex items-center justify-center gap-2">
+                  <span className="flex items-center justify-center gap-2 text-sm">
                     <svg
                       className="h-5 w-5"
                       fill="none"
@@ -261,7 +261,7 @@ export default function ProductDetailPage() {
                     به سبد اضافه شد!
                   </span>
                 ) : (
-                  <span className="flex items-center justify-center gap-2">
+                  <span className="flex items-center justify-center gap-2 text-sm">
                     <svg
                       className="h-5 w-5"
                       fill="none"

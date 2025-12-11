@@ -54,17 +54,17 @@ export default function ProductCard({
                 {category}
               </p>
             )}
-            <h3 className="text-lg font-semibold text-gray-900 mb-2 line-clamp-1">
+            <h3 className="text-sm lg:text-base font-semibold text-gray-900 mb-2 line-clamp-1">
               {name}
             </h3>
-            <p className="text-xl font-bold text-gray-900 mb-3">
+            <p className="text-sm lg:text-base font-bold text-gray-900 mb-3">
               ${digitsEnToFa(price.toFixed(2))}
             </p>
 
             <button
               onClick={handleAddToCart}
               disabled={isAdding}
-              className={`w-full rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
+              className={`text-xs md:text-sm w-full rounded-lg px-4 py-2 font-medium transition-colors ${
                 isAdding
                   ? "bg-green-600 text-white"
                   : "bg-blue-600 text-white hover:bg-blue-700"
