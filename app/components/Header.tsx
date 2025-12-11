@@ -104,98 +104,6 @@ export default function Header() {
             </Link>
           </div>
 
-          <form
-            onSubmit={handleSearch}
-            className="w-[50%] sm:max-w-md sm:mx-auto hidden md:block"
-          >
-            <div className="relative" ref={searchRef}>
-              <input
-                type="text"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="جستجوی محصولات..."
-                className="text-gray-800 w-full rounded-lg border border-gray-300 pr-10 pl-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-              />
-              <svg
-                className="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                />
-              </svg>
-
-              {showSuggestions && suggestions.length > 0 && (
-                <div className="absolute top-full mt-2 w-full bg-white border border-gray-200 rounded-lg shadow-lg max-h-96 overflow-y-auto z-50">
-                  {suggestions.map((product) => (
-                    <button
-                      key={product.id}
-                      type="button"
-                      onClick={() => handleSuggestionClick(product.id)}
-                      className="w-full flex items-center gap-3 p-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0 text-left"
-                    >
-                      <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded bg-gray-100">
-                        <Image
-                          src={product.image}
-                          alt={product.name}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-                      <div className="flex-1 min-w-0">
-                        <h4 className="text-sm font-medium text-gray-900 truncate">
-                          {product.name}
-                        </h4>
-                        <p className="text-xs text-gray-500">
-                          {product.category}
-                        </p>
-                      </div>
-                      <div className="text-sm font-semibold text-gray-900">
-                        ${digitsEnToFa(product.price.toFixed(2))}
-                      </div>
-                    </button>
-                  ))}
-                  {searchQuery.trim() && (
-                    <button
-                      type="submit"
-                      className="w-full p-3 text-sm text-blue-600 hover:bg-gray-50 font-medium flex items-center justify-center gap-2"
-                    >
-                      <svg
-                        className="h-4 w-4"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                        />
-                      </svg>
-                      مشاهده تمام نتایج برای &quot;{searchQuery}&quot;
-                    </button>
-                  )}
-                </div>
-              )}
-
-              {showSuggestions &&
-                searchQuery.trim() &&
-                suggestions.length === 0 && (
-                  <div className="absolute top-full mt-2 w-full bg-white border border-gray-200 rounded-lg shadow-lg p-4 z-50">
-                    <p className="text-sm text-gray-500 text-center">
-                      محصولی برای &quot;{searchQuery}&quot; یافت نشد
-                    </p>
-                  </div>
-                )}
-            </div>
-          </form>
-
           <div className="flex items-center gap-2 sm:gap-4">
             <Link
               href="/cart"
@@ -263,10 +171,9 @@ export default function Header() {
             )}
           </div>
         </div>
-
         <form
           onSubmit={handleSearch}
-          className="w-full sm:max-w-md sm:mx-auto block md:hidden"
+          className="w-full sm:max-w-md sm:mx-auto hidden md:block"
         >
           <div className="relative" ref={searchRef}>
             <input

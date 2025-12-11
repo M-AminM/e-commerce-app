@@ -78,7 +78,7 @@ const Search = () => {
               id="sort"
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="rounded-lg border border-gray-300 px-4 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="text-gray-800 rounded-lg border border-gray-300 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             >
               <option value="relevance">مرتبط‌ترین</option>
               <option value="price-low">قیمت: کم به زیاد</option>
@@ -117,13 +117,11 @@ const Search = () => {
                 d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
               />
             </svg>
-            <h2 className="mt-6 text-2xl font-bold text-gray-900">
+            <h2 className="mt-6 text-xl font-bold text-gray-900">
               نتیجه‌ای یافت نشد
             </h2>
             <p className="mt-2 text-gray-600">
-              {query
-                ? `محصولی مطابق با "${query}" پیدا نشد`
-                : "جستجوی محصولات"}
+              {query ? `محصولی مطابق با "${query}" پیدا نشد` : "جستجوی محصولات"}
             </p>
           </div>
         )}
