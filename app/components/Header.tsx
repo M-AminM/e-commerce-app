@@ -7,6 +7,7 @@ import Image from "next/image";
 import { useState, FormEvent, useEffect, useRef } from "react";
 import { useRouter } from "next/navigation";
 import { searchProducts, Product } from "@/data/products";
+import { digitsEnToAr, digitsEnToFa } from "@persian-tools/persian-tools";
 
 export default function Header() {
   const { user, loading, logout } = useAuth();
@@ -123,7 +124,7 @@ export default function Header() {
               </svg>
               {cartCount > 0 && (
                 <span className="absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full bg-blue-600 text-xs font-bold text-white">
-                  {cartCount}
+                  {digitsEnToAr(cartCount)}
                 </span>
               )}
             </Link>
@@ -220,7 +221,7 @@ export default function Header() {
                       </p>
                     </div>
                     <div className="text-sm font-semibold text-gray-900">
-                      ${product.price.toFixed(2)}
+                      ${digitsEnToFa(product.price.toFixed(2))}
                     </div>
                   </button>
                 ))}
@@ -248,13 +249,15 @@ export default function Header() {
               </div>
             )}
 
-            {showSuggestions && searchQuery.trim() && suggestions.length === 0 && (
-              <div className="absolute top-full mt-2 w-full bg-white border border-gray-200 rounded-lg shadow-lg p-4 z-50">
-                <p className="text-sm text-gray-500 text-center">
-                  محصولی برای &quot;{searchQuery}&quot; یافت نشد
-                </p>
-              </div>
-            )}
+            {showSuggestions &&
+              searchQuery.trim() &&
+              suggestions.length === 0 && (
+                <div className="absolute top-full mt-2 w-full bg-white border border-gray-200 rounded-lg shadow-lg p-4 z-50">
+                  <p className="text-sm text-gray-500 text-center">
+                    محصولی برای &quot;{searchQuery}&quot; یافت نشد
+                  </p>
+                </div>
+              )}
           </div>
         </form>
       </nav>

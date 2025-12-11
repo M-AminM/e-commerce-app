@@ -3,6 +3,7 @@
 import { useState } from "react";
 import ProductCard from "../components/ProductCard";
 import { products, categories } from "@/data/products";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 
 export default function ProductsPage() {
   const [selectedCategory, setSelectedCategory] = useState("همه");
@@ -34,7 +35,8 @@ export default function ProductsPage() {
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
           <h1 className="text-3xl font-bold text-gray-900">تمام محصولات</h1>
           <p className="mt-2 text-gray-600">
-            مجموعه‌ای از {products.length} محصول شگفت‌انگیز ما را مرور کنید
+            مجموعه‌ای از {digitsEnToFa(products.length)} محصول شگفت‌انگیز ما را
+            مرور کنید
           </p>
         </div>
       </div>
@@ -65,7 +67,7 @@ export default function ProductsPage() {
               id="sort"
               value={sortBy}
               onChange={(e) => setSortBy(e.target.value)}
-              className="rounded-lg border border-gray-300 bg-white px-3 py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+              className="text-gray-800 rounded-lg border border-gray-300 bg-white py-2 text-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
             >
               <option value="featured">ویژه</option>
               <option value="name">نام (الف-ی)</option>
@@ -77,7 +79,7 @@ export default function ProductsPage() {
         </div>
 
         <div className="mb-4 text-sm text-gray-600">
-          نمایش {sortedProducts.length} محصول
+          نمایش {digitsEnToFa(sortedProducts.length)} محصول
         </div>
 
         {sortedProducts.length > 0 ? (

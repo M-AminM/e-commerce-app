@@ -1,6 +1,7 @@
 "use client";
 
 import { useCart } from "@/contexts/CartContext";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -79,7 +80,7 @@ export default function CartPage() {
                           {item.name}
                         </h3>
                         <p className="mt-1 text-lg sm:text-xl font-bold text-gray-900">
-                          ${item.price.toFixed(2)}
+                          ${digitsEnToFa(item.price.toFixed(2))}
                         </p>
                       </div>
                       <button
@@ -133,19 +134,24 @@ export default function CartPage() {
                               />
                             </svg>
                           </button>
-                          <input
-                            type="number"
-                            id={`quantity-${item.id}`}
-                            min="1"
-                            value={item.quantity}
-                            onChange={(e) =>
-                              updateQuantity(
-                                item.id,
-                                parseInt(e.target.value) || 1
-                              )
-                            }
-                            className="text-gray-800 w-16 rounded-lg border border-gray-300 px-3 py-2 text-center focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                          />
+                          <div className="relative">
+                            <input
+                              type="number"
+                              id={`quantity-${item.id}`}
+                              min="1"
+                              value={item.quantity}
+                              onChange={(e) =>
+                                updateQuantity(
+                                  item.id,
+                                  parseInt(e.target.value) || 1
+                                )
+                              }
+                              className="opacity-0 absolute"
+                            />
+                            <div className="text-gray-800 w-16 rounded-lg border border-gray-300 px-3 py-2 text-center">
+                              {digitsEnToFa(item.quantity.toString())}
+                            </div>
+                          </div>
                           <button
                             onClick={() =>
                               updateQuantity(item.id, item.quantity + 1)
@@ -170,7 +176,8 @@ export default function CartPage() {
                         </div>
                       </div>
                       <p className="text-base sm:text-lg font-semibold text-gray-900 sm:ml-auto">
-                        جمع جزء: ${(item.price * item.quantity).toFixed(2)}
+                        جمع جزء: $
+                        {digitsEnToFa((item.price * item.quantity).toFixed(2))}
                       </p>
                     </div>
                   </div>
@@ -188,28 +195,31 @@ export default function CartPage() {
               <div className="space-y-3 border-b border-gray-200 pb-4">
                 <div className="flex justify-between text-gray-600">
                   <span>جمع جزء</span>
-                  <span>${subtotal.toFixed(2)}</span>
+                  <span>${digitsEnToFa(subtotal.toFixed(2))}</span>
                 </div>
                 <div className="flex justify-between text-gray-600">
                   <span>هزینه ارسال</span>
                   <span>
-                    {shipping === 0 ? "رایگان" : `$${shipping.toFixed(2)}`}
+                    {shipping === 0
+                      ? "رایگان"
+                      : `$${digitsEnToFa(shipping.toFixed(2))}`}
                   </span>
                 </div>
                 <div className="flex justify-between text-gray-600">
                   <span>مالیات (10%)</span>
-                  <span>${tax.toFixed(2)}</span>
+                  <span>${digitsEnToFa(tax.toFixed(2))}</span>
                 </div>
               </div>
 
               <div className="mt-4 flex justify-between text-lg font-bold text-gray-900">
                 <span>جمع کل</span>
-                <span>${total.toFixed(2)}</span>
+                <span>${digitsEnToFa(total.toFixed(2))}</span>
               </div>
 
               {subtotal < 100 && (
                 <p className="mt-4 text-sm text-gray-600">
-                  ${(100 - subtotal).toFixed(2)} بیشتر اضافه کنید تا ارسال رایگان شود!
+                  ${digitsEnToFa((100 - subtotal).toFixed(2))} بیشتر اضافه کنید
+                  تا ارسال رایگان شود!
                 </p>
               )}
 

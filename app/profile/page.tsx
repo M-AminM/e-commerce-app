@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import { useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 
 export default function ProfilePage() {
   const { user, loading, logout } = useAuth();
@@ -81,10 +82,14 @@ export default function ProfilePage() {
 
           <div className="lg:col-span-2 space-y-6">
             <div className="bg-white rounded-lg shadow-sm p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">اطلاعات حساب</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                اطلاعات حساب
+              </h3>
               <div className="space-y-4">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">نام</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    نام
+                  </label>
                   <input
                     type="text"
                     value={user.name}
@@ -93,7 +98,9 @@ export default function ProfilePage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1">ایمیل</label>
+                  <label className="block text-sm font-medium text-gray-700 mb-1">
+                    ایمیل
+                  </label>
                   <input
                     type="email"
                     value={user.email}
@@ -105,7 +112,9 @@ export default function ProfilePage() {
             </div>
 
             <div className="bg-white rounded-lg shadow-sm p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">تاریخچه سفارشات</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                تاریخچه سفارشات
+              </h3>
               {ordersLoading ? (
                 <div className="text-center py-8">
                   <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
@@ -127,7 +136,9 @@ export default function ProfilePage() {
                     />
                   </svg>
                   <p>هنوز سفارشی ندارید</p>
-                  <p className="text-sm mt-1">برای مشاهده تاریخچه سفارشات خود، خرید کنید</p>
+                  <p className="text-sm mt-1">
+                    برای مشاهده تاریخچه سفارشات خود، خرید کنید
+                  </p>
                 </div>
               ) : (
                 <div className="space-y-4">
@@ -142,13 +153,16 @@ export default function ProfilePage() {
                             سفارش #{order.id}
                           </p>
                           <p className="text-xs text-gray-500 mt-1">
-                            {new Date(order.createdAt).toLocaleDateString("fa-IR", {
-                              year: "numeric",
-                              month: "long",
-                              day: "numeric",
-                              hour: "2-digit",
-                              minute: "2-digit",
-                            })}
+                            {new Date(order.createdAt).toLocaleDateString(
+                              "fa-IR",
+                              {
+                                year: "numeric",
+                                month: "long",
+                                day: "numeric",
+                                hour: "2-digit",
+                                minute: "2-digit",
+                              }
+                            )}
                           </p>
                         </div>
                         <span
@@ -192,21 +206,22 @@ export default function ProfilePage() {
                                 {item.name}
                               </p>
                               <p className="text-xs text-gray-500">
-                                تعداد: {item.quantity} × ${item.price.toFixed(2)}
+                                تعداد: {digitsEnToFa(item.quantity)} × $
+                                {digitsEnToFa(item.price.toFixed(2))}
                               </p>
                             </div>
                           </div>
                         ))}
                         {order.items.length > 2 && (
                           <p className="text-xs text-gray-500">
-                            و {order.items.length - 2} محصول دیگر
+                            و {digitsEnToFa(order.items.length - 2)} محصول دیگر
                           </p>
                         )}
                       </div>
 
                       <div className="flex justify-between items-center pt-3 border-t border-gray-200">
                         <p className="text-sm font-semibold text-gray-900">
-                          مجموع: ${order.total.toFixed(2)}
+                          مجموع: ${digitsEnToFa(order.total.toFixed(2))}
                         </p>
                         <Link
                           href={`/products`}
@@ -222,7 +237,9 @@ export default function ProfilePage() {
             </div>
 
             <div className="bg-white rounded-lg shadow-sm p-6">
-              <h3 className="text-lg font-semibold text-gray-900 mb-4">آدرس ذخیره شده</h3>
+              <h3 className="text-lg font-semibold text-gray-900 mb-4">
+                آدرس ذخیره شده
+              </h3>
               {user.savedAddress ? (
                 <div className="border border-gray-200 rounded-lg p-4">
                   <div className="space-y-2">
@@ -242,7 +259,8 @@ export default function ProfilePage() {
                       </svg>
                       <div>
                         <p className="text-sm font-medium text-gray-900">
-                          {user.savedAddress.firstName} {user.savedAddress.lastName}
+                          {user.savedAddress.firstName}{" "}
+                          {user.savedAddress.lastName}
                         </p>
                       </div>
                     </div>
@@ -288,7 +306,9 @@ export default function ProfilePage() {
                           d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                         />
                       </svg>
-                      <p className="text-sm text-gray-600">{user.savedAddress.phone}</p>
+                      <p className="text-sm text-gray-600">
+                        {user.savedAddress.phone}
+                      </p>
                     </div>
                   </div>
                   <p className="mt-4 text-xs text-gray-500">
@@ -318,7 +338,8 @@ export default function ProfilePage() {
                   </svg>
                   <p>آدرس ذخیره شده‌ای ندارید</p>
                   <p className="text-sm mt-1">
-                    برای ذخیره آدرس در سفارشات آینده، در هنگام پرداخت آدرس اضافه کنید
+                    برای ذخیره آدرس در سفارشات آینده، در هنگام پرداخت آدرس اضافه
+                    کنید
                   </p>
                 </div>
               )}

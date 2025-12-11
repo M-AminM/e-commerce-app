@@ -6,6 +6,7 @@ import Link from "next/link";
 import { useParams } from "next/navigation";
 import { useCart } from "@/contexts/CartContext";
 import { getProductById } from "@/data/products";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 
 export default function ProductDetailPage() {
   const params = useParams();
@@ -20,9 +21,7 @@ export default function ProductDetailPage() {
       <main className="min-h-screen bg-gray-50">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900">
-              محصول یافت نشد
-            </h2>
+            <h2 className="text-3xl font-bold text-gray-900">محصول یافت نشد</h2>
             <p className="mt-2 text-gray-600">
               محصولی که به دنبال آن هستید وجود ندارد
             </p>
@@ -94,7 +93,7 @@ export default function ProductDetailPage() {
 
             <div className="mb-6">
               <p className="text-3xl font-bold text-gray-900">
-                \${product.price.toFixed(2)}
+                \${digitsEnToFa(product.price.toFixed(2))}
               </p>
             </div>
 
@@ -116,7 +115,8 @@ export default function ProductDetailPage() {
                 ))}
               </div>
               <p className="text-sm text-gray-600">
-                {product.rating} ({product.reviews} نظر)
+                {digitsEnToFa(product.rating)} ({digitsEnToFa(product.reviews)}{" "}
+                نظر)
               </p>
             </div>
 
@@ -194,16 +194,21 @@ export default function ProductDetailPage() {
                       />
                     </svg>
                   </button>
-                  <input
-                    type="number"
-                    id="quantity"
-                    min="1"
-                    value={quantity}
-                    onChange={(e) =>
-                      setQuantity(Math.max(1, parseInt(e.target.value) || 1))
-                    }
-                    className="text-gray-800 w-20 rounded-lg border border-gray-300 px-3 py-2 text-center focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                  />
+                  <div className="relative w-20">
+                    <input
+                      type="number"
+                      id="quantity"
+                      min="1"
+                      value={quantity}
+                      onChange={(e) =>
+                        setQuantity(Math.max(1, parseInt(e.target.value) || 1))
+                      }
+                      className="opacity-0 absolute w-full"
+                    />
+                    <div className="text-gray-800 w-20 rounded-lg border border-gray-300 px-3 py-2 text-center pointer-events-none">
+                      {digitsEnToFa(quantity.toString())}
+                    </div>
+                  </div>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
                     className="rounded-lg border border-gray-300 p-2 hover:bg-gray-100 transition-colors text-gray-800"
@@ -292,7 +297,7 @@ export default function ProductDetailPage() {
                   />
                 </svg>
                 <span className="text-sm">
-                  ارسال رایگان برای سفارش‌های بالای 100 دلار
+                  ارسال رایگان برای سفارش‌های بالای {digitsEnToFa(100)} دلار
                 </span>
               </div>
               <div className="flex items-center gap-3 text-gray-600">
@@ -309,7 +314,9 @@ export default function ProductDetailPage() {
                     d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                   />
                 </svg>
-                <span className="text-sm">امکان بازگشت تا 30 روز</span>
+                <span className="text-sm">
+                  امکان بازگشت تا {digitsEnToFa(30)} روز
+                </span>
               </div>
               <div className="flex items-center gap-3 text-gray-600">
                 <svg
