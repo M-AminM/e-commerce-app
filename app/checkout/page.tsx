@@ -9,6 +9,7 @@ import { useAuth } from "@/contexts/AuthContext";
 import { useCart } from "@/contexts/CartContext";
 import { useOrder } from "@/contexts/OrderContext";
 import { ShippingAddress } from "@/types/order";
+import { digitsEnToFa } from "@persian-tools/persian-tools";
 
 export default function CheckoutPage() {
   const router = useRouter();
@@ -63,8 +64,12 @@ export default function CheckoutPage() {
       <main className="min-h-screen bg-gray-50">
         <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
           <div className="text-center">
-            <h2 className="text-3xl font-bold text-gray-900">سبد خرید شما خالی است</h2>
-            <p className="mt-2 text-gray-600">قبل از پرداخت، محصولات را به سبد خرید اضافه کنید</p>
+            <h2 className="text-3xl font-bold text-gray-900">
+              سبد خرید شما خالی است
+            </h2>
+            <p className="mt-2 text-gray-600">
+              قبل از پرداخت، محصولات را به سبد خرید اضافه کنید
+            </p>
             <Link
               href="/products"
               className="mt-8 inline-block rounded-lg bg-blue-600 px-8 py-3 text-base font-semibold text-white hover:bg-blue-700 transition-colors"
@@ -168,7 +173,7 @@ export default function CheckoutPage() {
                       value={formData.phone}
                       onChange={handleInputChange}
                       className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                      placeholder="+1 (555) 123-4567"
+                      placeholder="9123456789"
                     />
                   </div>
                 </div>
@@ -219,7 +224,7 @@ export default function CheckoutPage() {
                       htmlFor="address"
                       className="block text-sm font-medium text-gray-700 mb-1"
                     >
-                      آدرس خیابان
+                      آدرس
                     </label>
                     <input
                       type="text"
@@ -228,7 +233,6 @@ export default function CheckoutPage() {
                       value={formData.address}
                       onChange={handleInputChange}
                       className="text-gray-800 w-full rounded-lg border border-gray-300 px-4 py-2 focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                      placeholder="123 Main St"
                     />
                   </div>
 
@@ -350,7 +354,10 @@ export default function CheckoutPage() {
                     onChange={(e) => setSaveAddressForFuture(e.target.checked)}
                     className="h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                   />
-                  <label htmlFor="saveAddress" className="mr-2 text-sm text-gray-700">
+                  <label
+                    htmlFor="saveAddress"
+                    className="mr-2 text-sm text-gray-700"
+                  >
                     ذخیره این آدرس برای سفارشات بعدی
                   </label>
                 </div>
@@ -397,10 +404,10 @@ export default function CheckoutPage() {
                         {item.name}
                       </h3>
                       <p className="text-sm text-gray-600">
-                        تعداد: {item.quantity}
+                        تعداد: {digitsEnToFa(item.quantity)}
                       </p>
                       <p className="text-sm font-semibold text-gray-900">
-                        ${(item.price * item.quantity).toFixed(2)}
+                        ${digitsEnToFa((item.price * item.quantity).toFixed(2))}
                       </p>
                     </div>
                   </div>
@@ -410,22 +417,24 @@ export default function CheckoutPage() {
               <div className="space-y-3 border-t border-gray-200 pt-4">
                 <div className="flex justify-between text-gray-600">
                   <span>جمع جزء</span>
-                  <span>${subtotal.toFixed(2)}</span>
+                  <span>${digitsEnToFa(subtotal.toFixed(2))}</span>
                 </div>
                 <div className="flex justify-between text-gray-600">
                   <span>هزینه ارسال</span>
                   <span>
-                    {shipping === 0 ? "رایگان" : `$${shipping.toFixed(2)}`}
+                    {shipping === 0
+                      ? "رایگان"
+                      : `$${digitsEnToFa(shipping.toFixed(2))}`}
                   </span>
                 </div>
                 <div className="flex justify-between text-gray-600">
                   <span>مالیات</span>
-                  <span>${tax.toFixed(2)}</span>
+                  <span>${digitsEnToFa(tax.toFixed(2))}</span>
                 </div>
                 <div className="border-t border-gray-200 pt-3">
                   <div className="flex justify-between text-lg font-bold text-gray-900">
                     <span>جمع کل</span>
-                    <span>${total.toFixed(2)}</span>
+                    <span>${digitsEnToFa(total.toFixed(2))}</span>
                   </div>
                 </div>
               </div>
@@ -461,7 +470,7 @@ export default function CheckoutPage() {
                       d="M5 13l4 4L19 7"
                     />
                   </svg>
-                  ضمانت بازگشت وجه تا 30 روز
+                  ضمانت بازگشت وجه تا {digitsEnToFa(30)} روز
                 </div>
               </div>
             </div>
