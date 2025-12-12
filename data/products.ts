@@ -187,8 +187,6 @@ export const searchProducts = (query: string): Product[] => {
     return products;
   }
 
-  // For short queries (1-2 characters), only search in name and category
-  // This prevents too many irrelevant results from description matches
   const isShortQuery = searchTerm.length <= 2;
 
   return products.filter((product) => {

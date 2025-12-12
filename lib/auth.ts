@@ -6,9 +6,9 @@ export interface User {
   email: string;
 }
 
-// In-memory user storage (for demo purposes)
-// In production, use a real database
-const users: Map<string, { email: string; password: string; name: string }> = new Map();
+// In-memory user storage
+const users: Map<string, { email: string; password: string; name: string }> =
+  new Map();
 
 // Initialize with a demo user
 users.set("demo@example.com", {
@@ -18,17 +18,21 @@ users.set("demo@example.com", {
 });
 
 export async function hashPassword(password: string): Promise<string> {
-  // In production, use bcrypt or similar
-  // For demo, we'll just return the password (NOT SECURE)
   return password;
 }
 
-export async function verifyPassword(password: string, hashedPassword: string): Promise<boolean> {
-  // In production, use bcrypt.compare()
+export async function verifyPassword(
+  password: string,
+  hashedPassword: string
+): Promise<boolean> {
   return password === hashedPassword;
 }
 
-export async function createUser(email: string, password: string, name: string): Promise<User | null> {
+export async function createUser(
+  email: string,
+  password: string,
+  name: string
+): Promise<User | null> {
   if (users.has(email)) {
     return null; // User already exists
   }
@@ -43,7 +47,10 @@ export async function createUser(email: string, password: string, name: string):
   };
 }
 
-export async function authenticateUser(email: string, password: string): Promise<User | null> {
+export async function authenticateUser(
+  email: string,
+  password: string
+): Promise<User | null> {
   const user = users.get(email);
 
   if (!user) {
@@ -65,7 +72,6 @@ export async function authenticateUser(email: string, password: string): Promise
 
 export async function setAuthCookie(user: User) {
   const cookieStore = await cookies();
-  // Store user data in cookie (in production, use encrypted JWT)
   cookieStore.set("user", JSON.stringify(user), {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",
