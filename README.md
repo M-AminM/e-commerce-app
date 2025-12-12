@@ -1,6 +1,6 @@
 # SafeShop - فروشگاه آنلاین
 
-یک پروژه فروشگاه آنلاین کامل که با Next.js 16، React 19، TypeScript و Tailwind CSS ساخته شده است.
+یک پروژه فروشگاه که با Next.js 16، React 19، TypeScript و Tailwind CSS ساخته شده است.
 
 ## درباره پروژه
 
@@ -15,13 +15,12 @@ SafeShop یک پلتفرم تجارت الکترونیک مدرن است که ا
 ## تکنولوژی‌های استفاده شده
 
 ### Frontend
-- **Next.js 16** - React Framework با قابلیت Server-Side Rendering
-- **React 19** - کتابخانه UI
-- **TypeScript** - برای Type Safety
-- **Tailwind CSS 4** - برای استایل‌دهی
+- **Next.js 16**
+- **React 19**
+- **TypeScript**
+- **Tailwind CSS 4**
 
 ### ویژگی‌های پروژه
-- **فونت فارسی**: استفاده از فونت یکان‌باخ
 - **RTL Support**: پشتیبانی کامل از راست به چپ
 - **Context API**: برای مدیریت وضعیت (State Management)
 - **Responsive Design**: طراحی واکنش‌گرا برای موبایل و دسکتاپ
@@ -63,7 +62,7 @@ e-commerce-app/
 ## ویژگی‌های اصلی
 
 ### 1. مدیریت محصولات
-- نمایش محصولات با کارت‌های جذاب
+- نمایش محصولات با کارت‌ها
 - دسته‌بندی محصولات (الکترونیک، مد و پوشاک، لوازم جانبی، خانه و آشپزخانه)
 - جستجو در نام، دسته‌بندی و توضیحات محصولات
 - فیلتر کردن بر اساس دسته‌بندی
@@ -190,7 +189,6 @@ interface Product {
 ## بهینه‌سازی‌ها
 
 - **Image Optimization**: استفاده از Next.js Image component
-- **Font Optimization**: بارگذاری بهینه فونت‌ها با next/font
 - **Code Splitting**: تقسیم خودکار کد توسط Next.js
 - **Static Generation**: تولید صفحات استاتیک برای بهبود سرعت
 
@@ -199,5 +197,4 @@ interface Product {
 - این پروژه برای اهداف آموزشی و نمایشی است
 - اطلاعات در localStorage ذخیره می‌شوند (بدون backend واقعی)
 - پرداخت به صورت شبیه‌سازی شده است (بدون integration با درگاه پرداخت)
-- تصاویر محصولات از placeholder استفاده می‌کنند
 
